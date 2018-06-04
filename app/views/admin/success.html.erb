@@ -1,0 +1,43 @@
+<h1>Success</h1>
+<h3>Species</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Common Name</th>
+      <th>Scientific Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @species.each do |s| %>
+      <tr>
+        <td>
+          <%= s.common %>
+        </td>
+        <td>
+          <%= s.scientific %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h3>Locations</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @locations.each do |l| %>
+      <tr>
+        <td><%= l.address %></td>
+        <td><%= l.city %></td>
+        <td><%= l.state %></td>
+        <td><%= l.country %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
