@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% locations.each do |l| %>
+      <tr>
+        <td><%= l.address %></td>
+        <td><%= link_to l.city, location_path(l.id) %></td>
+        <td><%= l.state %></td>
+        <td><%= l.country %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

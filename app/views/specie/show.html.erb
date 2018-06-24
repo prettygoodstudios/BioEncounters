@@ -1,0 +1,8 @@
+<div class="content-card">
+  <h1><%= @specie.common %></h1>
+  <p><%= @specie.scientific %></p>
+  <h3>Locations</h3>
+  <%= render partial: "location/table", locals: {locations: @locations} %>
+  <h3>Encounters</h3>
+  <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
+</div>

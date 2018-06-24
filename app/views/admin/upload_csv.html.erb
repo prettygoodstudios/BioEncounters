@@ -1,3 +1,4 @@
+<h1>Upload CSV</h1>
 <%= form_tag("/admin/upload", method: "post", :multipart => true) do %>
   <%= file_field_tag :file %>
   <%= submit_tag %>

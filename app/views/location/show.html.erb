@@ -1,0 +1,8 @@
+<div class="content-card">
+  <h1><%= @location.title %></h1>
+  <p><%= @location.full_address %></h1>
+  <h3>Encounters</h3>
+  <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
+  <br />
+  <%= link_to "Back", root_path, class: 'green-button' %></h1>
+</div>

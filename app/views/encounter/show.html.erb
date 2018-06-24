@@ -1,0 +1,7 @@
+<div class="content-card">
+  <h1><%= @encounter.date %></h1>
+  <p><%= link_to "#{@specie.common}, #{@specie.scientific}", specie_path(@specie.id) %></p>
+  <%= link_to "#{@location.city}, #{@location.state}", location_path(@location.id) %>
+  <p><%= @encounter.description %></p>
+  <%= link_to "Back", location_path(@location.id), class: 'green-button' %>
+</div>

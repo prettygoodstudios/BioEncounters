@@ -9,8 +9,19 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="push">
+      <%= render partial: "sharred/nav" %>
+      <div class="container-wrapper">
+        <div class="container">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <%= link_to "Admin", admin_path %>
+    </footer>
+    <%= javascript_include_tag 'nav' %>
   </body>
 </html>

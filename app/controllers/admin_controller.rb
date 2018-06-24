@@ -1,5 +1,10 @@
 class AdminController < ActionController::Base
   protect_from_forgery with: :exception
+  layout "application"
+  before_action :is_admin
+  def index
+
+  end
   def upload_csv
 
   end
@@ -81,5 +86,14 @@ class AdminController < ActionController::Base
       loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
     end
     redirect_to "/admin/success"
+  end
+  def is_admin
+    if current_user != nil
+      if current_user.role != "admin"
+        redirect_to root_path, alert: "You must be an admin to access this page."
+      end
+    else
+      redirect_to root_path, alert: "You must be an admin to access this page."
+    end
   end
 end
