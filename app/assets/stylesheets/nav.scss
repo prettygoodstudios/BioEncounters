@@ -1,0 +1,83 @@
+@import "variables";
+nav{
+  $primary-color: red !default;
+  background-color: $primary-color;
+  color: $light-color;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  font-weight: lighter;
+  .menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-basis: 80vw;
+    .menu-item{
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      a{
+        color: $light-color;
+        text-decoration: none;
+        &:hover{
+          color: $light-primary-color;
+        }
+      }
+    }
+    .menu-profile{
+      position: relative;
+      .menu-profile-header{
+        align-self: center;
+      }
+      .menu-profile-items{
+        display: none;
+      }
+      @media only screen and (min-width: 499px){
+        &:hover{
+          .menu-profile-items{
+            position: absolute;
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            top: 70px;
+            left: 0px;
+            display: flex;
+            flex-direction: column;
+            background-color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+  .nav-title-group{
+    flex-basis: 20vw;
+    h1{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      a{
+        color: $light-color;
+        text-decoration: none;
+        font-weight: normal;
+        &:hover{
+          color: $light-primary-color;
+        }
+      }
+    }
+    .toggle-wrapper{
+      height: 100%;
+      display: none;
+      #toggle{
+        display: flex;
+        color: $primary-color;
+        background-color: $light-color;
+        border: none;
+        padding: 10px;
+        &:focus{
+          outline: 0;
+        }
+      }
+    }
+  }
+}

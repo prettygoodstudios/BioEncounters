@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
@@ -19,9 +19,7 @@
         </div>
       </div>
     </div>
-    <footer>
-      <%= link_to "Admin", admin_path %>
-    </footer>
+    <%= render partial: "sharred/footer" %>
     <%= javascript_include_tag 'nav' %>
   </body>
 </html>

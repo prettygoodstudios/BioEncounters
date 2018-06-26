@@ -1,0 +1,556 @@
+/*Base HTML Styles*/
+/* line 3, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+html, body {
+  font-family: 'Helvetica Neue';
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  color: #6c6c6c;
+}
+
+/* line 10, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+/* line 15, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.push {
+  min-height: 90vh;
+}
+
+/* line 18, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 22, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.container {
+  width: 800px;
+}
+
+/* line 25, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 29, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+thead {
+  border-bottom: 2px solid black;
+  background-color: #F5F6ED;
+}
+
+/* line 33, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+th {
+  font-weight: normal;
+  font-style: italic;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 38, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+table {
+  width: 100%;
+}
+
+/* line 41, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+tr:nth-child(2n) {
+  background-color: #F5F6ED;
+}
+
+/* line 44, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+a {
+  color: #3FC380;
+  text-decoration: none;
+}
+
+/* line 48, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+a:hover {
+  color: #C8F7C5;
+  text-decoration: underline;
+}
+/* line 2, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/footer.scss */
+footer {
+  background-color: #3FC380;
+  margin-top: 20px;
+  padding: 20px;
+  color: white;
+}
+/* line 2, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav {
+  background-color: #3FC380;
+  color: white;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+/* line 10, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-basis: 80vw;
+}
+/* line 15, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 20, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item a {
+  color: white;
+  text-decoration: none;
+}
+/* line 23, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item a:hover {
+  color: #C8F7C5;
+}
+/* line 28, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile {
+  position: relative;
+}
+/* line 30, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile .menu-profile-header {
+  align-self: center;
+}
+/* line 33, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile .menu-profile-items {
+  display: none;
+}
+/* line 37, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile:hover .menu-profile-items {
+  position: absolute;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  top: 70px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: #3FC380;
+}
+/* line 51, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group {
+  flex-basis: 20vw;
+}
+/* line 53, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 57, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 a {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+}
+/* line 61, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 a:hover {
+  color: #C8F7C5;
+}
+/* line 66, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group .toggle-wrapper {
+  height: 100%;
+  display: none;
+}
+/* line 69, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group .toggle-wrapper #toggle {
+  display: flex;
+  color: #3FC380;
+  background-color: white;
+  border: none;
+  padding: 10px;
+}
+@media only screen and (max-width: 500px) {
+  /* line 3, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  .container {
+    width: 90vw;
+  }
+
+  /* line 6, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  /* line 9, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group {
+    flex-basis: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  /* line 14, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group h1 {
+    flex-basis: 80vw;
+  }
+  /* line 17, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group .toggle-wrapper {
+    flex-basis: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 22, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group .toggle-wrapper #toggle {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 30, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu {
+    display: none;
+    flex-basis: auto;
+    flex-direction: column;
+  }
+  /* line 34, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-item {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  /* line 39, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile .menu-profile-header {
+    align-self: flex-start;
+  }
+  /* line 42, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile .menu-profile-items {
+    display: none;
+  }
+  /* line 46, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile:hover .menu-profile-items {
+    display: flex;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-left: 0px;
+  }
+}
+/* line 19, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.green-button {
+  background-color: #3FC380;
+  color: white;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+  /*font-family: 'Courier New';*/
+}
+/* line 24, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.green-button:hover {
+  background-color: #C8F7C5;
+  color: #3FC380;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+}
+
+/*Content Card*/
+/* line 29, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.content-card {
+  box-shadow: #aaa 0px 0px 10px 1px;
+  padding: 20px;
+  border-radius: 5px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/*Variables*/
+/*Base HTML Styles*/
+/* line 3, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+html, body {
+  font-family: 'Helvetica Neue';
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  color: #6c6c6c;
+}
+
+/* line 10, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+/* line 15, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.push {
+  min-height: 90vh;
+}
+
+/* line 18, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 22, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+.container {
+  width: 800px;
+}
+
+/* line 25, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 29, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+thead {
+  border-bottom: 2px solid black;
+  background-color: #F5F6ED;
+}
+
+/* line 33, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+th {
+  font-weight: normal;
+  font-style: italic;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 38, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+table {
+  width: 100%;
+}
+
+/* line 41, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+tr:nth-child(2n) {
+  background-color: #F5F6ED;
+}
+
+/* line 44, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+a {
+  color: #3FC380;
+  text-decoration: none;
+}
+
+/* line 48, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/base.scss */
+a:hover {
+  color: #C8F7C5;
+  text-decoration: underline;
+}
+
+/* line 2, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav {
+  background-color: #3FC380;
+  color: white;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+/* line 10, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-basis: 80vw;
+}
+/* line 15, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 20, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item a {
+  color: white;
+  text-decoration: none;
+}
+/* line 23, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-item a:hover {
+  color: #C8F7C5;
+}
+/* line 28, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile {
+  position: relative;
+}
+/* line 30, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile .menu-profile-header {
+  align-self: center;
+}
+/* line 33, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile .menu-profile-items {
+  display: none;
+}
+/* line 37, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .menu .menu-profile:hover .menu-profile-items {
+  position: absolute;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  top: 70px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: #3FC380;
+}
+/* line 51, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group {
+  flex-basis: 20vw;
+}
+/* line 53, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 57, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 a {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+}
+/* line 61, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group h1 a:hover {
+  color: #C8F7C5;
+}
+/* line 66, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group .toggle-wrapper {
+  height: 100%;
+  display: none;
+}
+/* line 69, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/nav.scss */
+nav .nav-title-group .toggle-wrapper #toggle {
+  display: flex;
+  color: #3FC380;
+  background-color: white;
+  border: none;
+  padding: 10px;
+}
+
+/* line 2, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/footer.scss */
+footer {
+  background-color: #3FC380;
+  margin-top: 20px;
+  padding: 20px;
+  color: white;
+}
+
+/* line 19, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.green-button {
+  background-color: #3FC380;
+  color: white;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+  /*font-family: 'Courier New';*/
+}
+/* line 24, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.green-button:hover {
+  background-color: #C8F7C5;
+  color: #3FC380;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+}
+
+/*Content Card*/
+/* line 29, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/widgets.scss */
+.content-card {
+  box-shadow: #aaa 0px 0px 10px 1px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 500px) {
+  /* line 3, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  .container {
+    width: 90vw;
+  }
+
+  /* line 6, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  /* line 9, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group {
+    flex-basis: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  /* line 14, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group h1 {
+    flex-basis: 80vw;
+  }
+  /* line 17, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group .toggle-wrapper {
+    flex-basis: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 22, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .nav-title-group .toggle-wrapper #toggle {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 30, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu {
+    display: none;
+    flex-basis: auto;
+    flex-direction: column;
+  }
+  /* line 34, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-item {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  /* line 39, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile .menu-profile-header {
+    align-self: flex-start;
+  }
+  /* line 42, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile .menu-profile-items {
+    display: none;
+  }
+  /* line 46, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/responsive.scss */
+  nav .menu .menu-profile:hover .menu-profile-items {
+    display: flex;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-left: 0px;
+  }
+}

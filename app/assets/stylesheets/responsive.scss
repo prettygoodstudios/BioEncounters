@@ -1,0 +1,66 @@
+@import "variables";
+@media only screen and (max-width: 500px){
+  .container{
+    width: 90vw;
+  }
+  nav{
+    display: flex;
+    flex-direction: column;
+    .nav-title-group{
+      flex-basis: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      h1{
+        flex-basis: 80vw;
+      }
+      .toggle-wrapper{
+        flex-basis: 20vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        #toggle{
+          display: flex;
+          align-self: flex-end;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+    .menu{
+      display: none;
+      flex-basis: auto;
+      flex-direction: column;
+      .menu-item{
+        margin-left: 0px;
+        margin-top: 20px;
+      }
+      .menu-profile{
+        .menu-profile-header{
+          align-self: flex-start;
+        }
+        .menu-profile-items{
+          display: none;
+        }
+        &:hover{
+          .menu-profile-items{
+            display: none;
+          }
+        }
+        .menu-profile-items-hover{
+          display: flex !important;
+          position: relative !important;
+          top: 0px;
+          left: 0px;
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+  footer{
+    grid-template-columns: repeat(1, 1fr);
+    .footer-section:nth-child(1){
+      grid-row: 3;
+    }
+  }
+}

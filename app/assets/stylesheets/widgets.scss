@@ -1,0 +1,36 @@
+@import "variables";
+@mixin standard-button($background-color: blue, $color: white, $rounded: 'false', $font-size: 1.0em){
+  background-color: $background-color;
+  color: $color;
+  border: none;
+  justify-content: center;
+  font-size: $font-size;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  @if $rounded == 'true'{
+    border-radius: 50px;
+  } @else if $rounded == 'false' {
+    border-radius: 0px;
+  }
+  &:focus{
+    outline: 0;
+  }
+  @content;
+}
+.green-button{
+  $primary-color: green !default;
+  @include standard-button($background-color: $primary-color, $color: $light-color, $rounded: 'false', $font-size: 1.4em){
+      /*font-family: 'Courier New';*/
+  }
+  &:hover{
+    @include standard-button($background-color: $light-primary-color, $color: $primary-color, $rounded: 'false', $font-size: 1.4em);
+  }
+}
+/*Content Card*/
+.content-card{
+  box-shadow: #aaa 0px 0px 10px 1px;
+  padding: 20px;
+  border-radius: 5px;
+}

@@ -1,0 +1,333 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+/*Variables*/
+/*Base HTML Styles*/
+/* line 23, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+html, body {
+  font-family: 'Helvetica Neue';
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  color: #6c6c6c;
+}
+
+/* line 30, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+}
+
+/* line 35, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.push {
+  min-height: 90vh;
+}
+
+/* line 38, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 42, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.container {
+  width: 800px;
+}
+
+/* line 45, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+h1, h2, h3, h4, h5 {
+  font-weight: normal;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 49, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+thead {
+  border-bottom: 2px solid black;
+  background-color: #F5F6ED;
+}
+
+/* line 53, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+th {
+  font-weight: normal;
+  font-style: italic;
+  font-family: 'Trebuchet MS';
+}
+
+/* line 58, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+table {
+  width: 100%;
+}
+
+/* line 61, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+tr:nth-child(2n) {
+  background-color: #F5F6ED;
+}
+
+/* line 64, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+a {
+  color: #3FC380;
+  text-decoration: none;
+}
+
+/* line 68, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+a:hover {
+  color: #C8F7C5;
+  text-decoration: underline;
+}
+
+/*Navigation Bar*/
+/* line 73, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav {
+  background-color: #3FC380;
+  color: white;
+  display: flex;
+  padding: 20px;
+  justify-content: flex-start;
+  font-weight: lighter;
+}
+/* line 81, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-basis: 80vw;
+}
+/* line 86, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-item {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 91, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-item a {
+  color: white;
+  text-decoration: none;
+}
+/* line 94, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-item a:hover {
+  color: #C8F7C5;
+}
+/* line 99, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-profile {
+  position: relative;
+}
+/* line 101, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-profile .menu-profile-header {
+  align-self: center;
+}
+/* line 104, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-profile .menu-profile-items {
+  display: none;
+}
+/* line 108, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .menu .menu-profile:hover .menu-profile-items {
+  position: absolute;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  top: 70px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: #3FC380;
+}
+/* line 122, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group {
+  flex-basis: 20vw;
+}
+/* line 124, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group h1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* line 128, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group h1 a {
+  color: white;
+  text-decoration: none;
+  font-weight: normal;
+}
+/* line 132, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group h1 a:hover {
+  color: #C8F7C5;
+}
+/* line 137, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group .toggle-wrapper {
+  height: 100%;
+  display: none;
+}
+/* line 140, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+nav .nav-title-group .toggle-wrapper #toggle {
+  display: flex;
+  color: #3FC380;
+  background-color: white;
+  border: none;
+  padding: 10px;
+}
+
+/*Footer*/
+/* line 151, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+footer {
+  background-color: #3FC380;
+  margin-top: 20px;
+  padding: 20px;
+  color: white;
+}
+
+/*Buttons*/
+/* line 176, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.green-button {
+  background-color: #3FC380;
+  color: white;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+  /*font-family: 'Courier New';*/
+}
+/* line 181, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.green-button:hover {
+  background-color: #C8F7C5;
+  color: #3FC380;
+  border: none;
+  justify-content: center;
+  font-size: 1.4em;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  max-width: 150px;
+  border-radius: 50px;
+}
+
+/*Flexbox*/
+/*
+@mixin flex-config($justify-content: false, $flex: false, $flex-direction: false, $align-items: false) {
+  display: flex;
+  @if $justify-content != false {
+    justify-content: $justify-content;
+  }
+  @if $flex != false {
+    flex: $flex;
+  }
+  @if $flex-direction != false {
+    flex-direction: $flex-direction;
+  }
+  @if $align-items != false {
+    align-items: $align-items;
+  }
+
+}
+*/
+/*Lists*/
+/* line 208, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.car-maserati {
+  background-image: url("https://s3.amazonaws.com/bottega-devcamp/scss/cars/maserati.jpg");
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+/* line 208, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.car-tesla {
+  background-image: url("https://s3.amazonaws.com/bottega-devcamp/scss/cars/tesla.jpg");
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+/* line 208, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.car-porsche {
+  background-image: url("https://s3.amazonaws.com/bottega-devcamp/scss/cars/porsche.jpg");
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+/*Content Card*/
+/* line 215, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+.content-card {
+  box-shadow: #aaa 0px 0px 10px 1px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/*Media Queries*/
+@media only screen and (max-width: 500px) {
+  /* line 222, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  .container {
+    width: 90vw;
+  }
+
+  /* line 225, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+  /* line 228, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .nav-title-group {
+    flex-basis: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  /* line 233, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .nav-title-group h1 {
+    flex-basis: 80vw;
+  }
+  /* line 236, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .nav-title-group .toggle-wrapper {
+    flex-basis: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 241, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .nav-title-group .toggle-wrapper #toggle {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    justify-content: center;
+  }
+  /* line 249, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .menu {
+    display: none;
+    flex-basis: auto;
+    flex-direction: column;
+  }
+  /* line 253, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .menu .menu-item {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
+  /* line 258, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .menu .menu-profile .menu-profile-header {
+    align-self: flex-start;
+  }
+  /* line 261, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .menu .menu-profile .menu-profile-items {
+    display: none;
+  }
+  /* line 265, /Users/admin/railsProjects/bioencounters/app/assets/stylesheets/application.scss */
+  nav .menu .menu-profile:hover .menu-profile-items {
+    display: flex;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding-left: 0px;
+  }
+}
