@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post "/admin/upload", to: "admin#import_csv#admin"
   get "/admin/success", to: "admin#success"
   get "/playground", to: "location#playground"
+  get "/geoapi", to: "location#geo_json_api"
   root to: "location#index"
 end

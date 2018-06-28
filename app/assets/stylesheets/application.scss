@@ -14,12 +14,10 @@
  *= require_self
  */
 /*Variables*/
-$primary-color: #3FC380;
-$light-primary-color: #C8F7C5;
-$light-color: white;
-$dark-color: #6c6c6c;
 @import "base";
 @import "nav";
 @import "footer";
 @import "widgets";
 @import "responsive";
+@import "map";
+@import "alert";

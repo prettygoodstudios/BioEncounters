@@ -1,4 +1,8 @@
 <div class="content-card">
   <h1>Locations</h1>
+  <div id="map"></div>
   <%= render partial: "location/table", locals: {locations: @locations} %>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <%= javascript_include_tag 'map' %>
 </div>

@@ -4,7 +4,12 @@
     <title>Bioencounters</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script>
+      const ROOT_URL = "<%= root_url %>";
+      console.log(ROOT_URL);
+    </script>
     <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'alert' %>
   </head>
 
   <body>
@@ -12,8 +17,15 @@
       <%= render partial: "sharred/nav" %>
       <div class="container-wrapper">
         <div class="container">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+          <div class="alert">
+            <div class="alert__header">
+              <button class="alert__dismiss">x</button>
+            </div>
+            <div class="alert__content">
+              <%= alert %>
+              <%= notice %>
+            </div>
+          </div>
           <%= yield %>
         </div>
       </div>

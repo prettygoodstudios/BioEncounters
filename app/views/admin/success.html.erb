@@ -1,25 +1,26 @@
-
-<h1>You Successfully Uploaded a CSV</h1>
-<h3>Species</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Common Name</th>
-      <th>Scientific Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @species.each do |s| %>
+<div class="content-card">
+  <h1>You Successfully Uploaded a CSV</h1>
+  <h3>Species</h3>
+  <table>
+    <thead>
       <tr>
-        <td>
-          <%= s.common %>
-        </td>
-        <td>
-          <%= s.scientific %>
-        </td>
+        <th>Common Name</th>
+        <th>Scientific Name</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<h3>Locations</h3>
-<%= render partial: "location/table", locals: {locations: @locations} %>
+    </thead>
+    <tbody>
+      <% @species.each do |s| %>
+        <tr>
+          <td>
+            <%= s.common %>
+          </td>
+          <td>
+            <%= s.scientific %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h3>Locations</h3>
+  <%= render partial: "location/table", locals: {locations: @locations} %>
+</div>

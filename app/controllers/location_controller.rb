@@ -6,9 +6,12 @@ class LocationController < ActionController::Base
   end
   def show
     @location = Location.find(params[:id])
-    @encounters = Encounter.find_by_sql("SELECT e.* FROM encounters e JOIN locations l ON e.location_id = l.id WHERE l.id = #{params[:id].to_s} ORDER BY e.date DESC")
+    @encounters = Encounter.find_by_sql("SELECT e.*, s.common FROM encounters e JOIN species s ON e.specie_id = s.id WHERE e.location_id = #{params[:id].to_s} ORDER BY e.date DESC")
   end
   def playground
 
+  end
+  def geo_json_api
+    render json: Location.all
   end
 end
