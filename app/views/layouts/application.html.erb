@@ -17,15 +17,7 @@
       <%= render partial: "sharred/nav" %>
       <div class="container-wrapper">
         <div class="container">
-          <div class="alert">
-            <div class="alert__header">
-              <button class="alert__dismiss">x</button>
-            </div>
-            <div class="alert__content">
-              <%= alert %>
-              <%= notice %>
-            </div>
-          </div>
+          <%= render partial: "sharred/alert", locals: {alert: alert, notice: notice} %>
           <%= yield %>
         </div>
       </div>

@@ -6,4 +6,13 @@ class EncounterController < ActionController::Base
     @location = Location.find(@encounter.location_id)
     @specie = Specie.find(@encounter.specie_id)
   end
+  def new
+    @address = params[:city]
+    @city = params[:city]
+    @state = params[:state]
+    @country = params[:country]
+  end
+  def remove_extraneous str
+
+  end
 end

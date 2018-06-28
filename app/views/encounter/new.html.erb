@@ -1,0 +1,47 @@
+<div class="content-card">
+  <h1>Create A New Encounter</h1>
+  <%= form_tag("/encounter", method: "post", :multipart => true) do %>
+    <div class="form-group">
+      <%= label_tag :address %>
+      <%= text_field_tag :address, @address %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :city %>
+      <%= text_field_tag :city, @city %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :state %>
+      <%= text_field_tag :state, @state %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :country %>
+      <%= text_field_tag :country, @country%>
+    </div>
+    <div class="form-group">
+      <%= label_tag :description %>
+      <%= text_field_tag :description %>
+    </div>
+    <div class="form-group select-specie">
+      <%= label_tag :specie, 'Select a Specie Already in our System' %>
+      <%= select_tag :specie, options_from_collection_for_select(Specie.all, "id", "common")%>
+    </div>
+    <div class="field">
+      <%= label :toggleSpecie, 'Or Add a New Specie' %>
+      <input type="checkbox" id="toggleSpecie" name="toggleSpecie" id="toggleSpecie"/>
+    </div>
+    <div class="specie-fields">
+      <h3>New Specie</h3>
+      <div class="form-group">
+        <%= label_tag :common, 'Common Name' %>
+        <%= text_field_tag :common %>
+      </div>
+      <div class="form-group" >
+        <%= label_tag :scientific, 'Scientific Name' %>
+        <%= text_field_tag :scientific %>
+      </div>
+    </div>
+    <br />
+    <%= submit_tag "Create!", class: "green-button" %>
+  <% end %>
+</div>
+<%= javascript_include_tag 'encounterForm' %>
