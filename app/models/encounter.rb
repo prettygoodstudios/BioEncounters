@@ -7,6 +7,8 @@ class Encounter < ApplicationRecord
       errors.add(:location_id, "The encounter must be tied to a location.")
     elsif specie_id == nil
       errors.add(:specie_id, "The encounter must be tied to a specie.")
+    elsif date == nil
+      errors.add(:date, "You must provide a valid date")
     end
   end
 end
