@@ -1,7 +1,7 @@
 <div class="content-card">
   <h1><%= @location.title %></h1>
   <p><%= @location.full_address %></h1>
-  <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country) %>
+  <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country) if user_signed_in?%>
   <h3>Encounters</h3>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
   <br />
