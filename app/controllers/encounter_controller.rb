@@ -37,6 +37,7 @@ class EncounterController < ActionController::Base
          return @location
       else
         redirect_to new_encounter_path, alert: @location.errors.values.first.first
+        return nil
       end
     end
   end

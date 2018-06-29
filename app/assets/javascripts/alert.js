@@ -1,4 +1,12 @@
 window.onload = () => {
+  handleAlert();
+}
+window.onbeforeunload = () => {
+  handleAlert();
+}
+
+
+function handleAlert(){
   console.log("Hello");
   const alertContent = document.querySelector(".alert__content");
   let alert = document.querySelector(".alert");
