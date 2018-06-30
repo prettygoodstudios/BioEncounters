@@ -1,6 +1,6 @@
-window.onload = () => {
+window.addEventListener("load", () => {
   handleAlert();
-}
+});
 window.onbeforeunload = () => {
   handleAlert();
 }
