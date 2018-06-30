@@ -2,6 +2,7 @@ class EncounterController < ActionController::Base
   protect_from_forgery with: :exception
   layout "application"
   before_action :is_signed_in, only: [:new]
+  before_action :set_encounter, only: [:show,:edit,:update]
   def show
     @encounter = Encounter.find(params[:id])
     @location = Location.find(@encounter.location_id)
@@ -25,6 +26,16 @@ class EncounterController < ActionController::Base
           redirect_to new_encounter_path, alert: @encounter.errors.values.first.first
         end
       end
+    end
+  end
+  def edit
+    @description = @encounter.description
+  end
+  def update
+    if @encounter.update_attributes(encounter_params)
+      redirect_to encounter_path(@encounter.id), alert: "The encounter has been updated successfully."
+    else
+      redirect_to edit_encounter_path(@encounter.id), alert: @encounter.errors.values.first.first
     end
   end
   def location_create
@@ -58,5 +69,11 @@ class EncounterController < ActionController::Base
     if !signed_in?
       redirect_to root_path, alert: "You must sign in to access this content."
     end
+  end
+  def encounter_params
+    params.permit(:description)
+  end
+  def set_encounter
+    @encounter = Encounter.find(params[:id])
   end
 end

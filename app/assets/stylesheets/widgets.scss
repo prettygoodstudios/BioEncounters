@@ -8,7 +8,6 @@
   padding: 10px;
   text-decoration: none;
   display: flex;
-  max-width: 150px;
   @if $rounded == 'true'{
     border-radius: 50px;
   } @else if $rounded == 'false' {

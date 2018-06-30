@@ -1,4 +1,10 @@
 <div class="content-card">
   <h3>Edit Encounter</h3>
-  
+  <%= form_tag(encounter_path(@encounter), method: "put") do %>
+    <div class="form-group">
+      <%= label_tag :description %>
+      <%= text_field_tag :description, @description %>
+    </div>
+    <%= submit_tag "Update Encounter", class: "green-button" %>
+  <% end %>
 </div>
