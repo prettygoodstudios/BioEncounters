@@ -1,7 +1,7 @@
 <footer>
   <div class="footer-section">
     <div>Usefull Links</div>
-    <%= link_to "Admin", admin_path %>
+    <%= link_to "Admin", admin_path if signed_in? && current_user.role == "admin" %>
   </div>
   <div class="footer-section">
     <%= link_to "Bioencounters", root_path, class: "footer-title" %>
