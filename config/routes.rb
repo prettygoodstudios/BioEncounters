@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get "/admin/success", to: "admin#success"
   get "/playground", to: "location#playground"
   get "/geoapi", to: "location#geo_json_api"
+  get "/get_by_state", to: "location#get_by_state"
   root to: "location#index"
 end

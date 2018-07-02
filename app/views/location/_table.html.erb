@@ -12,7 +12,7 @@
       <tr>
         <td><%= l.address %></td>
         <td><%= link_to l.city, location_path(l.id) %></td>
-        <td><%= l.state %></td>
+        <td><%= link_to l.state, get_by_state_path(state: l.state) %></td>
         <td><%= l.country %></td>
       </tr>
     <% end %>

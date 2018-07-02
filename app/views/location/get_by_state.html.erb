@@ -1,0 +1,4 @@
+<div class="content-card">
+  <h1>Locations for <%= params[:state] %></h1>
+  <%= render partial: "location/table", locals: {locations: @locations} %>
+</div>
