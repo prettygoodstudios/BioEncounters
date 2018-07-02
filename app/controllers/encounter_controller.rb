@@ -1,8 +1,9 @@
 class EncounterController < ActionController::Base
   protect_from_forgery with: :exception
   layout "application"
-  before_action :is_signed_in, only: [:new]
   before_action :set_encounter, only: [:show,:edit,:update]
+  before_action :is_signed_in, only: [:new,:edit,:create,:update]
+  before_action :authorized, only: [:edit,:update]
   def show
     @encounter = Encounter.find(params[:id])
     @location = Location.find(@encounter.location_id)
@@ -19,7 +20,7 @@ class EncounterController < ActionController::Base
     if @location != nil
       @specie = specie_create
       if @specie != nil
-        @encounter = Encounter.create(date: Date.parse(params[:date]), description: params[:description], location_id: @location.id, specie_id: @specie.id)
+        @encounter = Encounter.create(date: Date.parse(params[:date]), description: params[:description], location_id: @location.id, specie_id: @specie.id, user_id: current_user.id)
         if @encounter.save
           redirect_to encounter_path(@encounter.id), alert: "Successfully created encounter."
         else
@@ -29,7 +30,8 @@ class EncounterController < ActionController::Base
     end
   end
   def edit
-    @description = @encounter.description
+    @location = Location.find(@encounter.location_id)
+    @specie = Specie.find(@encounter.specie_id)
   end
   def update
     if @encounter.update_attributes(encounter_params)
@@ -53,7 +55,7 @@ class EncounterController < ActionController::Base
     end
   end
   def specie_create
-    @specie = Specie.create(common: params[:common], scientific: params[:scientific])
+    @specie = Specie.create(common: params[:common], scientific: params[:scientific], user_id: current_user.id)
     if @specie.save
       return @specie
     else
@@ -65,15 +67,16 @@ class EncounterController < ActionController::Base
       end
     end
   end
-  def is_signed_in
-    if !signed_in?
-      redirect_to root_path, alert: "You must sign in to access this content."
-    end
-  end
   def encounter_params
-    params.permit(:description)
+    params.permit(:description,:specie_id)
   end
   def set_encounter
     @encounter = Encounter.find(params[:id])
+  end
+  def is_signed_in
+    redirect_to root_path, alert: "You must be logged in to perform this action." if current_user == nil
+  end
+  def authorized
+    redirect_to root_path, alert: "You must be the owner of this content to perform this action." if !current_user.isMine(@encounter)
   end
 end

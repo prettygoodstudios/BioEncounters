@@ -27,7 +27,7 @@
     </div>
     <div class="form-group select-specie">
       <%= label_tag :specie, 'Select a Specie Already in our System' %>
-      <%= select_tag :specie, options_from_collection_for_select(Specie.all.order("common ASC"), "id", "common")%>
+      <%= select_tag(:specie, options_from_collection_for_select(Specie.all.order("common ASC"), "id", "common"))%>
     </div>
     <div class="field">
       <%= label :toggleSpecie, 'Or Add a New Specie' %>

@@ -12,7 +12,7 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    flex-basis: 80vw;
+    flex-basis: 60vw;
     .menu-item{
       margin-left: 20px;
       display: flex;
@@ -52,7 +52,7 @@ nav{
     }
   }
   .nav-title-group{
-    flex-basis: 20vw;
+    flex-basis: 40vw;
     h1{
       display: flex;
       flex-direction: column;

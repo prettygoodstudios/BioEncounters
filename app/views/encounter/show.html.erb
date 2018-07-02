@@ -2,7 +2,7 @@
   <h1><%= @encounter.date %></h1>
   <p><%= link_to "#{@specie.common}, #{@specie.scientific}", specie_path(@specie.id) %></p>
   <%= link_to "#{@location.city}, #{@location.state}", location_path(@location.id) %>
-  <p><%= link_to "Edit", edit_encounter_path if signed_in? %></p>
+  <p><%= link_to "Edit", edit_encounter_path if signed_in? && current_user.isMine(@encounter) %></p>
   <p><%= @encounter.description %></p>
   <%= link_to "Back", location_path(@location.id), class: 'green-button' %>
 </div>
