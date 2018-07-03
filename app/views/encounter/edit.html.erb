@@ -5,7 +5,6 @@
       <%= label_tag :description %>
       <%= text_field_tag :description, @encounter.description %>
     </div>
-    <!--
     <h3>Location</h3>
     <div class="form-group">
       <%= label_tag :address %>
@@ -23,12 +22,27 @@
       <%= label_tag :country %>
       <%= text_field_tag :country, @location.country %>
     </div>
-    !-->
-    <h3>Specie</h3>
-    <div class="form-group">
-      <%= label_tag :specie_id, 'Select from species in the system.' %>
-      <%= select_tag :specie_id, options_from_collection_for_select(Specie.all.order("common ASC"), "id", "common")%>
+    <div class="form-group select-specie">
+      <%= label_tag :specie, 'Select a Specie Already in our System' %>
+      <%= select_tag(:specie, options_from_collection_for_select(Specie.all.order("common ASC"), "id", "common"))%>
     </div>
-    <%= submit_tag "Update Encounter", class: "green-button" %>
+    <div class="field">
+      <%= label :toggleSpecie, 'Or Add a New Specie' %>
+      <input type="checkbox" id="toggleSpecie" name="toggleSpecie" id="toggleSpecie"/>
+    </div>
+    <div class="specie-fields">
+      <h3>New Specie</h3>
+      <div class="form-group">
+        <%= label_tag :common, 'Common Name' %>
+        <%= text_field_tag :common %>
+      </div>
+      <div class="form-group" >
+        <%= label_tag :scientific, 'Scientific Name' %>
+        <%= text_field_tag :scientific %>
+      </div>
+    </div>
+    <br />
+    <%= submit_tag "Update!", class: 'green-button' %>
   <% end %>
 </div>
+<%= javascript_include_tag 'encounterForm' %>

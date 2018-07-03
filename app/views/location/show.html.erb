@@ -1,6 +1,9 @@
 <div class="content-card">
   <h1><%= @location.title %></h1>
   <p><%= @location.full_address %></h1>
+  <br />
+  <br />
+  <%= link_to "View all the encounters in #{@location.state}.", get_by_state_path(state: @location.state) %>
   <p>
     <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country) if user_signed_in?%>
   </p>
