@@ -2,7 +2,7 @@ class EncounterController < ActionController::Base
   protect_from_forgery with: :exception
   layout "application"
   before_action :set_encounter, only: [:show,:edit,:update]
-  before_action :is_signed_in, only: [:new,:edit,:create,:update]
+  before_action :is_signed_in, only: [:new,:edit,:create,:update,:my_encounters]
   before_action :authorized, only: [:edit,:update]
   def show
     @location = Location.find(@encounter.location_id)
@@ -52,6 +52,9 @@ class EncounterController < ActionController::Base
         end
       end
     end
+  end
+  def my_encounters
+    @encounters = Encounter.where("user_id = #{current_user.id}")
   end
   def location_create return_path
     @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: current_user.id)

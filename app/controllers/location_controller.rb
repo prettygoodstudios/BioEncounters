@@ -2,7 +2,7 @@ class LocationController < ActionController::Base
   protect_from_forgery with: :exception
   layout "application"
   def index
-    @locations = Location.all.order("city ASC")
+    @locations = Location.order("ASCII(city)+ASCII(state)*10 ASC")
   end
   def show
     @location = Location.find(params[:id])

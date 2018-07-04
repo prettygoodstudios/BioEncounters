@@ -14,6 +14,7 @@ class Location < ApplicationRecord
   before_validation :geocode
   def full_address
     addressArray = [address, city, state, country]
+    addressArray.shift if address == ""
     addressArray.compact.join(", ")
   end
   def unique_address

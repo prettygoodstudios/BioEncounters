@@ -50,8 +50,10 @@
         .menu-profile-items-hover{
           display: flex !important;
           position: relative !important;
+          flex-direction: column;
           top: 0px;
           left: 0px;
+          width: 100%;
           padding-left: 0px;
         }
       }
