@@ -13,7 +13,7 @@ fetch(`${ROOT_URL}geoapi`).then((data) => {
     el.className = 'marker';
     let marker = new mapboxgl.Marker(el,{ offset: [0, -35] }).setLngLat([l.longitude,l.latitude]).addTo(map);
     let title = `<h3>${l.city}</h3>`;
-    let address = `<p>${l.address}, ${l.city}, ${l.state}, ${l.country}</p>`;
+    let address = `<p>${l.full_address}</p>`;
     let link = `<a href="${ROOT_URL}location/${l.id}" class="green-button">View</a>`;
     let popup = new mapboxgl.Popup().setHTML(title+address+link);
     marker.setPopup(popup);

@@ -12,7 +12,7 @@ class LocationController < ActionController::Base
 
   end
   def geo_json_api
-    render json: Location.all
+    render json: Location.all.map { |l| {city: l.city, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude} }
   end
   def get_by_state
     @locations = Location.where("state = '#{params[:state]}'").order("city ASC")

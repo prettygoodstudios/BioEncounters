@@ -1,5 +1,5 @@
 @import "variables";
-@mixin standard-button($background-color: blue, $color: white, $rounded: 'false', $font-size: 1.0em){
+@mixin standard-button($background-color: blue, $color: white, $rounded: 'true', $font-size: 1.0em){
   background-color: $background-color;
   color: $color;
   border: none;
@@ -9,7 +9,7 @@
   text-decoration: none;
   display: flex;
   @if $rounded == 'true'{
-    border-radius: 50px;
+    border-radius: 5px;
   } @else if $rounded == 'false' {
     border-radius: 0px;
   }
@@ -20,11 +20,11 @@
 }
 .green-button{
   $primary-color: green !default;
-  @include standard-button($background-color: $primary-color, $color: $light-color, $rounded: 'false', $font-size: 1.4em){
+  @include standard-button($background-color: $primary-color, $color: $light-color, $font-size: 1.4em){
       /*font-family: 'Courier New';*/
   }
   &:hover{
-    @include standard-button($background-color: $light-primary-color, $color: $primary-color, $rounded: 'false', $font-size: 1.4em);
+    @include standard-button($background-color: $light-primary-color, $color: $primary-color, $font-size: 1.4em);
   }
 }
 /*Content Card*/

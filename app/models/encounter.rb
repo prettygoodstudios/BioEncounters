@@ -1,5 +1,6 @@
 class Encounter < ApplicationRecord
   belongs_to :location
+  validate :required_fields
   def required_fields
     if description == ""
       errors.add(:description, "You must provide a description")
