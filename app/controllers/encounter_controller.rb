@@ -6,6 +6,7 @@ class EncounterController < ActionController::Base
   before_action :authorized, only: [:edit,:update]
   def show
     @location = Location.find(@encounter.location_id)
+    @user = User.find(@encounter.user_id)
     @specie = Specie.find(@encounter.specie_id)
   end
   def new
@@ -55,6 +56,10 @@ class EncounterController < ActionController::Base
   end
   def my_encounters
     @encounters = Encounter.where("user_id = #{current_user.id}")
+  end
+  def user_encounters
+    @user = User.find(params[:user])
+    @encounters = Encounter.where("user_id = #{params[:user]}")
   end
   def location_create return_path
     @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: current_user.id)
