@@ -4,6 +4,9 @@
     <div class="toggle-wrapper"><button id="toggle">Menu</button></div>
   </div>
   <div class="menu">
+    <div class="menu-item__float-left">
+      <%= link_to "Species", specie_index_path %>
+    </div>
     <% if current_user == nil %>
       <div class="menu-item"><%= link_to "Sign In", new_user_session_path %></div>
       <div class="menu-item"><%= link_to "Sign Up", new_user_registration_path%></div>

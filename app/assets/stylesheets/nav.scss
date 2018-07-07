@@ -25,6 +25,9 @@ nav{
           color: $light-primary-color;
         }
       }
+      &__float-left{
+        justify-self: flex-start;
+      }
     }
     .menu-profile{
       position: relative;

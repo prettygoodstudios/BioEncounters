@@ -1,0 +1,19 @@
+<div class="content-card">
+  <h1>Species</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Common Name</th>
+        <th>Scientific Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @species.each do |s| %>
+        <tr>
+          <td><%= link_to s.common, specie_path(s.id) %></td>
+          <td><%= s.scientific %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
