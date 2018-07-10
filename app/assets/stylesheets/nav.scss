@@ -16,17 +16,13 @@ nav{
   .menu{
     &__show{
       display: flex;
-      visibility: visible;
-      opacity: 1;
-      transition-duration: $toggle-animation-duration;
-      transition: visibility, opacity;
+      transform: translate(0,0);
+      transition: transform $toggle-animation-duration;
     }
     &__hide{
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-      transition-duration: $toggle-animation-duration;
-      transition: visibility, opacity;
+      display: flex;
+      transform: translate(-100%,0);
+      transition: transform $toggle-animation-duration;
     }
     position: fixed;
     left: -20px;
