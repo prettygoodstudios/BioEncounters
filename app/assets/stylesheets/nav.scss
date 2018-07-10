@@ -4,25 +4,57 @@ nav{
   background-color: $primary-color;
   color: $light-color;
   display: flex;
+  position: fixed;
+  width: 100vw;
   padding: 20px;
   justify-content: flex-start;
-  font-weight: lighter;
-  margin-bottom: 20px;
+  font-weight: bold;
+  height: 100px;
+  top: 0;
+  z-index: 999;
+  box-shadow: 4px 1px 10px 1px rgba(0,0,0,0.3);
   .menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    flex-basis: 60vw;
+    &__show{
+      display: flex;
+      visibility: visible;
+      opacity: 1;
+      transition-duration: $toggle-animation-duration;
+      transition: visibility, opacity;
+    }
+    &__hide{
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition-duration: $toggle-animation-duration;
+      transition: visibility, opacity;
+    }
+    position: fixed;
+    left: -20px;
+    top: 140px;
+    z-index: 999;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 400px;
+    background-color: $light-color;
+    height: 100vh;
+    box-shadow: 4px 10px 10px 1px rgba(0,0,0,0.3);
+    .menu-item:nth-child(2n){
+      background-color: $dark-white-color;
+    }
     .menu-item{
+      padding-left: 20px;
+      padding-right: 20px;
+      height: 100px;
       margin-left: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      background-color: $light-color;
       a{
-        color: $light-color;
+        color: $dark-color;
         text-decoration: none;
         &:hover{
-          color: $light-primary-color;
+          color: $primary-color;
         }
       }
       &__float-left{
@@ -32,7 +64,11 @@ nav{
     .menu-profile{
       position: relative;
       .menu-profile-header{
-        align-self: center;
+        align-self: flex-start;
+        color: $dark-color;
+        &:hover{
+          color: $primary-color;
+        }
       }
       .menu-profile-items{
         display: none;
@@ -42,20 +78,18 @@ nav{
           .menu-profile-items{
             position: absolute;
             padding: 20px;
-            border-radius: 20px;
-            width: 100%;
-            top: 70px;
+            top: 100px;
             left: 0px;
             display: flex;
             flex-direction: column;
-            background-color: $primary-color;
+            background-color: $light-color;
           }
         }
       }
     }
   }
   .nav-title-group{
-    flex-basis: 40vw;
+    display: flex;
     h1{
       display: flex;
       flex-direction: column;
@@ -70,14 +104,105 @@ nav{
       }
     }
     .toggle-wrapper{
-      height: 100%;
-      display: none;
-      #toggle{
-        display: flex;
-        color: $primary-color;
-        background-color: $light-color;
+      height: 100px;
+      width: 100px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      .toggle{
+        position: relative;
         border: none;
-        padding: 10px;
+        padding: 0px;
+        width: 50px;
+        height: 50px;
+        &__open{
+          background: none !important;
+          .toggle-one{
+            position: absolute;
+            background-color: $light-color;
+            top: 0px;
+            width: 50px;
+            height: 5px;
+            border-radius: 3px;
+            transform: rotate(0deg);
+            transition-duration: $toggle-animation-duration;
+            transition-property: top, transform;
+          }
+          .toggle-two{
+            position: absolute;
+            background-color: $light-color;
+            top: 22px;
+            width: 50px;
+            display: block;
+            height: 5px;
+            border-radius: 3px;
+            transition-duration: $toggle-animation-duration;
+            transition-property: display;
+          }
+          .toggle-three{
+            position: absolute;
+            background-color: $light-color;
+            top: 45px;
+            width: 50px;
+            height: 5px;
+            border-radius: 3px;
+            transform: rotate(0deg);
+            transition-duration: $toggle-animation-duration;
+            transition-property: top, transform;
+          }
+          &:hover{
+            .toggle-one{
+              color: $light-primary-color;
+            }
+            .toggle-two{
+              color: $light-primary-color;
+            }
+            .toggle-three{
+              color: $light-primary-color;
+            }
+          }
+        }
+        &__closed{
+          background: none !important;
+          .toggle-one{
+            position: absolute;
+            background-color: $light-color;
+            top: 22px;
+            width: 50px;
+            height: 5px;
+            border-radius: 3px;
+            transform: rotate(45deg);
+            transition-duration: $toggle-animation-duration;
+            transition-property: top, transform;
+          }
+          .toggle-two{
+            display: none;
+            transition-duration: $toggle-animation-duration;
+            transition-property: display;
+          }
+          .toggle-three{
+            position: absolute;
+            background-color: $light-color;
+            top: 22px;
+            width: 50px;
+            height: 5px;
+            border-radius: 3px;
+            transform: rotate(-45deg);
+            transition-duration: $toggle-animation-duration;
+            transition-property: top, transform;
+          }
+          &:hover{
+            .toggle-one{
+              color: $light-primary-color;
+            }
+            .toggle-two{
+              color: $light-primary-color;
+            }
+            .toggle-three{
+              color: $light-primary-color;
+            }
+          }
+        }
         &:focus{
           outline: 0;
         }

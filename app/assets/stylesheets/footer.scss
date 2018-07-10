@@ -1,6 +1,7 @@
 @import "variables";
 footer{
   display: grid;
+  box-shadow: 4px 1px 10px 1px rgba(0,0,0,0.3);
   grid-template-columns: repeat(3,1fr);
   justify-content: space-around;
   $primary-color: red !default;
@@ -8,6 +9,7 @@ footer{
   margin-top: 20px;
   padding: 20px;
   color: $light-color;
+  z-index: 999;
   .footer-section{
     display: flex;
     align-items: center;

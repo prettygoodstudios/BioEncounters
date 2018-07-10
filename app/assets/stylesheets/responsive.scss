@@ -16,25 +16,12 @@
       }
       .toggle-wrapper{
         flex-basis: 20vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        #toggle{
-          display: flex;
-          align-self: flex-end;
-          flex-direction: column;
-          justify-content: center;
+        .toggle{
+          background-color: none !important;
         }
       }
     }
     .menu{
-      display: none;
-      flex-basis: auto;
-      flex-direction: column;
-      .menu-item{
-        margin-left: 0px;
-        margin-top: 20px;
-      }
       .menu-profile{
         .menu-profile-header{
           align-self: flex-start;

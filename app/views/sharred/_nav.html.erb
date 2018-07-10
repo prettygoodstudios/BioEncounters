@@ -1,9 +1,15 @@
 <nav>
   <div class="nav-title-group">
+    <div class="toggle-wrapper">
+      <button id="toggle" class="toggle toggle__open">
+        <div class="toggle-one"></div>
+        <div class="toggle-two"></div>
+        <div class="toggle-three"></div>
+      </button>
+    </div>
     <h1><%= link_to "Bio Encounters", root_path %></h1>
-    <div class="toggle-wrapper"><button id="toggle">Menu</button></div>
   </div>
-  <div class="menu">
+  <div class="menu menu__hide">
     <div class="menu-item">
       <%= link_to "Species", specie_index_path %>
     </div>

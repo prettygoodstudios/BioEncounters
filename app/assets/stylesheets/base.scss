@@ -20,6 +20,7 @@ input{
   min-height: 90vh;
 }
 .container-wrapper{
+  margin-top: 160px;
   display: flex;
   justify-content: center;
 }
@@ -32,7 +33,7 @@ h1, h2, h3, h4, h5{
 }
 thead{
   border-bottom: 2px solid black;
-  background-color: #F5F6ED;
+  background-color: $dark-white-color;
 }
 th{
   font-weight: normal;
@@ -43,7 +44,7 @@ table{
   width: 100%;
 }
 tr:nth-child(2n){
-  background-color: #F5F6ED;
+  background-color: $dark-white-color;
 }
 a{
   color: $primary-color;
