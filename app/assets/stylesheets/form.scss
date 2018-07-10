@@ -1,16 +1,44 @@
 @import "variables";
 .form-group{
   color: $dark-color;
+  position: relative;
+  height: 100px;
   label{
-    display: block;
+    position: absolute;
     font-size: 1.2em;
     margin-bottom: 10px;
+    z-index: 999;
+    top: 10px;
+    left: 10px;
   }
   input{
     width: 100%;
     max-width: 400px;
   }
-  margin-bottom: 40px;
+  &__focus{
+    height: 100px;
+    label{
+      position: relative;
+      display: block;
+      color: $primary-color;
+      font-size: 0.8em;
+    }
+    input{
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+}
+.form-group-not-text{
+  color: $dark-color;
+  label{
+    display: block;
+  }
+  margin-bottom: 10px;
+  input{
+    width: 100%;
+    max-width: 400px;
+  }
 }
 .specie-fields{
   display: none;
