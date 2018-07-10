@@ -1,0 +1,45 @@
+@import "variables";
+.list{
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+  border-radius: 3px;
+  margin: 10px;
+  .list-item{
+    height: 200px;
+    display: block;
+    position: relative;
+    background-color: $light-color;
+    img{
+      position: absolute;
+      left: 20px;
+      top: 50px;
+      height: 100px;
+      width: 100px;
+    }
+    p{
+      position: absolute;
+      left: 120px;
+      top: 100px;
+      transform: translate(0, -50%);
+      margin: 0px;
+      font-size: 20px;
+      color: $dark-color;
+    }
+    &:hover{
+      background-color: $dark-white-color;
+    }
+    &__text-group{
+      position: absolute;
+      left: 140px;
+      top: 100px;
+      transform: translate(0,-50%);
+      color: $dark-color;
+      &__title{
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      &__sub-title{
+        font-size: 15px;
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+<!--
 <table>
   <thead>
     <tr>
@@ -16,3 +17,19 @@
     <% end %>
   </tbody>
 </table>
+-->
+<div class="list">
+  <% encounters.each do |e| %>
+    <a class="list-item" href="<%= encounter_path(e.id) %>">
+      <img src="https://www.bio-techfar.com/images/assets/leaf.png" />
+      <div class="list-item__text-group">
+        <div class="list-item__text-group__title">
+          <%= (e["common"] != nil) ? e.common : e.description %>
+        </div>
+        <div class="list-item__text-group__sub-title">
+          <%= e.date %>
+        </div>
+      </div>
+    </a>
+  <% end %>
+</div>

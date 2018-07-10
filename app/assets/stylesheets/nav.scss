@@ -6,10 +6,10 @@ nav{
   display: flex;
   position: fixed;
   width: 100vw;
-  padding: 20px;
+  padding: 10px;
   justify-content: flex-start;
   font-weight: bold;
-  height: 100px;
+  height: 75px;
   top: 0;
   z-index: 999;
   box-shadow: 4px 1px 10px 1px rgba(0,0,0,0.3);
@@ -26,7 +26,7 @@ nav{
     }
     position: fixed;
     left: -20px;
-    top: 140px;
+    top: 95px;
     z-index: 999;
     flex-direction: column;
     justify-content: flex-start;
@@ -100,11 +100,12 @@ nav{
       }
     }
     .toggle-wrapper{
-      height: 100px;
-      width: 100px;
+      height: 75px;
+      width: 75px;
       display: flex;
       justify-content: center;
       flex-direction: column;
+      margin-left: 10px;
       .toggle{
         position: relative;
         border: none;
