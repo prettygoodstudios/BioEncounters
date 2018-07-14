@@ -1,5 +1,16 @@
 <div class="content-card">
-  <h1>Locations for <%= params[:state] %></h1>
+  <div class="loco-map">
+    <h1 class="loco-map-title">Locations for <%= params[:state] %></h1>
+    <div class="loco-map-mask"></div>
+    <div id="locoMap"></div>
+  </div>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <script>
+    const LOCATION = [<%= Location.state(params[:state])[:latitude] %>, <%= Location.state(params[:state])[:longitude] %>];
+    const ZOOM = 6;
+  </script>
+  <%= javascript_include_tag 'locationMap' %>
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <br />
   <%= link_to "Back", root_path, class: 'green-button' %>

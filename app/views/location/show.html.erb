@@ -1,11 +1,20 @@
 <div class="content-card">
-  <h1><%= @location.title %></h1>
-  <p><%= @location.full_address %></h1>
-  <br />
-  <br />
-  <%= link_to "#{image_tag 'states'}#{@location.state}.".html_safe, get_by_state_path(state: @location.state) %>
+  <div class="loco-map">
+    <h1 class="loco-map-title">Locations for <%= @location.safe_title %></h1>
+    <div class="loco-map-mask"></div>
+    <div id="locoMap"></div>
+  </div>
+  <p><%= @location.full_address %></p>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <script>
+    const LOCATION = [<%= @location.latitude %>, <%= @location.longitude %>];
+    const ZOOM = 10;
+  </script>
+  <%= javascript_include_tag 'locationMap' %>
+  <%= link_to "View all encounters in #{@location.state}.", get_by_state_path(state: @location.state), class: 'green-button' %>
   <p>
-    <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country) if user_signed_in?%>
+    <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'green-button' if user_signed_in?%>
   </p>
   <h3>Encounters</h3>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>

@@ -17,6 +17,17 @@ class Location < ApplicationRecord
     addressArray.shift if address == ""
     addressArray.compact.join(", ")
   end
+  def safe_title
+    if title == "Untitled" || title != ""
+      if address == ""
+        return city
+      else
+        return address
+      end
+    else
+      return title
+    end
+  end
   def unique_address
     Location.all.each do |l|
       errors.add(:address, "This location already exists") if l.full_address == full_address
@@ -33,5 +44,9 @@ class Location < ApplicationRecord
   end
   def address_exists
     errors.add(:address, "This location does not exist.") if latitude == nil
+  end
+  def self.state str
+    geo = Geocoder.search(str).first
+    { latitude: geo.latitude, longitude: geo.longitude }
   end
 end
