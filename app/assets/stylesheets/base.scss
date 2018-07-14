@@ -29,7 +29,7 @@ input{
 }
 h1, h2, h3, h4, h5{
   font-weight: normal;
-  font-family: 'Trebuchet MS';
+  /*font-family: 'Trebuchet MS';*/
 }
 thead{
   border-bottom: 2px solid black;
@@ -53,4 +53,9 @@ a{
 a:hover{
   color: $light-primary-color;
   text-decoration: underline;
+}
+a{
+  img{
+    height: 20px;
+  }
 }

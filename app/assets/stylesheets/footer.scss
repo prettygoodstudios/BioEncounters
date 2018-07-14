@@ -10,6 +10,8 @@ footer{
   padding: 20px;
   color: $light-color;
   z-index: 999;
+  min-height: 95px;
+  align-items: center;
   .footer-section{
     display: flex;
     align-items: center;
@@ -21,8 +23,17 @@ footer{
         text-decoration: none;
       }
     }
+    .emphasis{
+      font-size: 1.5em;
+      font-weight: 700;
+    }
     .footer-title{
       font-size: 1.5em;
+      span{
+        font-weight: 800;
+        font-size: 1.5em;
+      }
+      font-weight: 300;
     }
   }
 }
