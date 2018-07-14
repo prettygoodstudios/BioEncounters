@@ -35,7 +35,7 @@ nav{
     height: 100vh;
     box-shadow: 4px 10px 10px 1px rgba(0,0,0,0.3);
     .menu-item:nth-child(2n){
-      background-color: $dark-white-color;
+      /*background-color: $dark-white-color;*/
     }
     .menu-item{
       padding-left: 20px;
@@ -47,14 +47,23 @@ nav{
       justify-content: center;
       background-color: $light-color;
       a{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
         color: $dark-color;
         text-decoration: none;
         &:hover{
-          color: $primary-color;
+          /*color: $primary-color;*/
         }
       }
       &__float-left{
         justify-self: flex-start;
+      }
+      &:hover{
+        background-color: $dark-white-color;
       }
     }
     .menu-profile{
@@ -62,12 +71,15 @@ nav{
       .menu-profile-header{
         align-self: flex-start;
         color: $dark-color;
-        &:hover{
-          color: $primary-color;
-        }
       }
       .menu-profile-items{
         display: none;
+        a{
+          width: 100%;
+          &:hover{
+            color: $primary-color;
+          }
+        }
       }
       @media only screen and (min-width: 499px){
         &:hover{
@@ -97,6 +109,11 @@ nav{
         &:hover{
           color: $light-primary-color;
         }
+        span{
+          font-weight: 800;
+          font-size: 1.5em;
+        }
+        font-weight: 100;
       }
     }
     .toggle-wrapper{
