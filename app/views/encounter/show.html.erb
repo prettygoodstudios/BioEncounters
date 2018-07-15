@@ -7,5 +7,5 @@
   <%= link_to "<i class='fas fa-search'></i> #{@user.email}".html_safe, user_encounters_path(user: @user.id) %>
   <p><%= link_to "Edit", edit_encounter_path if signed_in? && current_user.isMine(@encounter) %></p>
   <p><%= @encounter.description %></p>
-  <%= back_button { path: location_path(@encounter.location_id)} %>
+  <%= back_button({ path: location_path(@encounter.location_id)}) %>
 </div>

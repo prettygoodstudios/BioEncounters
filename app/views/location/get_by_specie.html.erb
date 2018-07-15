@@ -2,5 +2,5 @@
   <h1>Locations for <%= @specie.common %></h1>
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <br />
-  <%= back_button %>
+  <%= back_button({path: root_path}) %>
 </div>
