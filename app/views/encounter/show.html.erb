@@ -1,11 +1,11 @@
 <div class="content-card">
   <h1><%= @encounter.date %></h1>
-  <p><%= link_to "#{@specie.common}, #{@specie.scientific}", specie_path(@specie.id) %></p>
-  <%= link_to @location.full_address, location_path(@location.id) %>
+  <p><%= link_to "<i class='fas fa-leaf'></i> #{@specie.common}, #{@specie.scientific}".html_safe, specie_path(@specie.id) %></p>
+  <%= link_to "<i class='fas fa-map-marker-alt'></i> #{@location.full_address}".html_safe, location_path(@location.id) %>
   <br />
   <br />
-  <%= link_to "Found By #{@user.email}", user_encounters_path(user: @user.id) %>
+  <%= link_to "<i class='fas fa-search'></i> #{@user.email}".html_safe, user_encounters_path(user: @user.id) %>
   <p><%= link_to "Edit", edit_encounter_path if signed_in? && current_user.isMine(@encounter) %></p>
   <p><%= @encounter.description %></p>
-  <%= link_to "Back", location_path(@location.id), class: 'green-button' %>
+  <%= back_button { path: location_path(@encounter.location_id)} %>
 </div>

@@ -14,10 +14,11 @@
   <%= javascript_include_tag 'locationMap' %>
   <%= link_to "View all encounters in #{@location.state}.", get_by_state_path(state: @location.state), class: 'green-button' %>
   <p>
-    <%= link_to "Create New Encounter", new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'green-button' if user_signed_in?%>
+    Create New Encounter
+    <%= link_to "<i class='fas fa-plus'></i>".html_safe, new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'round-button' if user_signed_in?%>
   </p>
   <h3>Encounters</h3>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
   <br />
-  <%= link_to "Back", root_path, class: 'green-button' %></h1>
+  <%= back_button %></h1>
 </div>
