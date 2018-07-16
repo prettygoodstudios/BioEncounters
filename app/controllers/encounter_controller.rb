@@ -102,6 +102,10 @@ class EncounterController < ActionController::Base
       end
     end
   end
+  def get_by_date_api
+    @encounters = Encounter.find_by_sql("SELECT e.description, e.id as encounter_id, l.id as location_id, l.latitude, l.longitude, l.city, s.common FROM encounters e JOIN locations l ON e.location_id = l.id JOIN species s ON e.specie_id = s.id WHERE e.date = '#{params[:date]}'")
+    render json: @encounters
+  end
   def encounter_params
     params.permit(:description)
   end

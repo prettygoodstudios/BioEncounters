@@ -1,5 +1,14 @@
 <div class="content-card">
   <h1><%= @date %> Encounters</h1>
+  <div class="loco-map">
+    <div id="locoMap"></div>
+  </div>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <script>
+    const DATE = "<%= @date %>";
+  </script>
+  <%= javascript_include_tag "dateMap" %>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
   <br />
   <%= back_button({ path: root_path})  %>

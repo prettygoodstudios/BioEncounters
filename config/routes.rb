@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/geoapi", to: "location#geo_json_api"
   get "/get_by_state", to: "location#get_by_state"
   get "/get_by_date", to: "encounter#get_by_date"
+  get "/get_by_date_api", to: "encounter#get_by_date_api"
   get "/my_encounters", to: "encounter#my_encounters"
   get "/user_encounters", to: "encounter#user_encounters"
   root to: "location#index"
