@@ -1,7 +1,8 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicHJldHR5Z29vZHN0dWRpb3MiLCJhIjoiY2pkamx4aTZlMWt4dDJwbnF5a3ZmbTEzcyJ9.lu_9eqO1kmUMPf9LXU80yg';
 let map = new mapboxgl.Map({
   container: 'locoMap',
-  style: 'mapbox://styles/prettygoodstudios/cjiwl3mup71c72rmsfn9xeupa'
+  style: 'mapbox://styles/prettygoodstudios/cjiwl3mup71c72rmsfn9xeupa',
+  scrollZoom: (window.innerWidth > 900) ? true : false
 });
 let nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-left');
