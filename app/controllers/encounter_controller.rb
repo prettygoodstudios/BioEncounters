@@ -61,6 +61,10 @@ class EncounterController < ActionController::Base
     @user = User.find(params[:user])
     @encounters = Encounter.where("user_id = #{params[:user]}")
   end
+  def get_by_date
+    @date = params[:date]
+    @encounters = Encounter.where("date = '#{params[:date]}'")
+  end
   def location_create return_path
     @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: current_user.id)
     if @location.save

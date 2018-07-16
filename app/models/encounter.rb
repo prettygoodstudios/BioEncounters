@@ -12,4 +12,7 @@ class Encounter < ApplicationRecord
       errors.add(:date, "You must provide a valid date")
     end
   end
+  def date_occurences
+    Encounter.where("date = '#{date.to_s}'").length
+  end
 end

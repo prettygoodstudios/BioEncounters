@@ -1,5 +1,5 @@
 <div class="content-card">
-  <h1><%= @encounter.date %></h1>
+  <h1><%= (@encounter.date_occurences == 1) ? @encounter.date : link_to(@encounter.date, get_by_date_path({date: @encounter.date})) %></h1>
   <p><%= link_to "<i class='fas fa-leaf'></i> #{@specie.common}, #{@specie.scientific}".html_safe, specie_path(@specie.id) %></p>
   <%= link_to "<i class='fas fa-map-marker-alt'></i> #{@location.full_address}".html_safe, location_path(@location.id) %>
   <br />

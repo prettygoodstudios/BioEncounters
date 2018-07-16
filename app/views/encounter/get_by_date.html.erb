@@ -1,6 +1,6 @@
 <div class="content-card">
-  <h1><%= @user.email %>'s Encounters</h1>
+  <h1><%= @date %> Encounters</h1>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
   <br />
-  <%= back_button({ path: root_path}) %>
+  <%= back_button({ path: root_path})  %>
 </div>

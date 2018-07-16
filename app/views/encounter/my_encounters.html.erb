@@ -2,5 +2,5 @@
   <h1><%= current_user.email %>'s Encounters</h1>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
   <br />
-  <%= link_to "Back", root_path, class: "green-button" %>
+  <%= back_button({ path: root_path}) %>
 </div>
