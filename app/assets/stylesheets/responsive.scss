@@ -93,6 +93,10 @@
       font-size: 0.6em;
     }
   }
+  .loco-map-right-title{
+    max-width: 50vw;
+    font-size: 1.2em;
+  }
 }
 @media only screen and (max-width: $container-width) and (min-width: $mobile-break-point){
   .container{

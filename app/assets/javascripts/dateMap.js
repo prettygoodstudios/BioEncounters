@@ -9,16 +9,40 @@ map.addControl(nav, 'top-left');
 fetch(`${ROOT_URL}get_by_date_api?date=${DATE}`).then((data) => {
   return(data.json());
 }).then((data) => {
-  data.forEach((l) => {
+  let locations = [];
+  data.forEach((e,i) => {
+    let found = -1;
+    locations.forEach((l,j) => {
+      if(e.location_id == l.location_id) found = j;
+    });
+    if(found == -1){
+      const temp = {
+        location_id: e.location_id,
+        latitude: e.latitude,
+        longitude: e.longitude,
+        city: e.city,
+        encounters: [e]
+      }
+      locations.push(temp);
+    }else{
+      locations[found].encounters.push(e);
+    }
+  });
+  locations.forEach((l) => {
     let el = document.createElement('div');
     el.className = 'marker';
+    el.innerHTML = (l.encounters.length != 1) ? `<div class="marker-alert">${l.encounters.length}</div>` : '';
     let marker = new mapboxgl.Marker(el,{ offset: [0, -35] }).setLngLat([l.longitude,l.latitude]).addTo(map);
-    let title = `<h3>${l.city}</h3>`;
-    let address = `<p>${l.common} - ${l.description}</p>`;
-    let link = `<a href="${ROOT_URL}location/${l.location_id}" class="green-button">View</a>`;
-    let popup = new mapboxgl.Popup().setHTML(title+address+link);
+    const title = `<h3>${l.city} - ${DATE}</h3>`;
+    const description = `<p>${l.encounters.length} Encounter${ l.encounters.length != 1 ? 's' : ''}</p>`
+    const encounters = l.encounters.map((e) => {
+     return `<p><strong>${e.common}</strong> - <i>${e.description}</i></p>`;
+    }).join("");
+    const link = `<a href="${ROOT_URL}location/${l.location_id}" class="green-button">View More From This Location</a>`;
+    const popup = new mapboxgl.Popup().setHTML(title+description+encounters+link);
     marker.setPopup(popup);
   });
+  map.flyTo({center: [data[0].longitude,data[0].latitude], zoom: 6});
 });
 window.onresize = () => {
   console.log(map);
