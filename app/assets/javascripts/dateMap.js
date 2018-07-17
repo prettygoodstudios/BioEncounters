@@ -20,3 +20,11 @@ fetch(`${ROOT_URL}get_by_date_api?date=${DATE}`).then((data) => {
     marker.setPopup(popup);
   });
 });
+window.onresize = () => {
+  console.log(map);
+  if(window.innerWidth > 900){
+    map.scrollZoom.enable();
+  }else{
+    map.scrollZoom.disable();
+  }
+}
