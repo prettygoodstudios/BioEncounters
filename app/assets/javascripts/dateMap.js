@@ -6,7 +6,7 @@ let map = new mapboxgl.Map({
 });
 let nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-left');
-fetch(`${ROOT_URL}get_by_date_api?date=${DATE}`).then((data) => {
+fetch(`${ROOT_URL}${PATH}`).then((data) => {
   return(data.json());
 }).then((data) => {
   let locations = [];
@@ -28,12 +28,13 @@ fetch(`${ROOT_URL}get_by_date_api?date=${DATE}`).then((data) => {
       locations[found].encounters.push(e);
     }
   });
+  console.log(locations);
   locations.forEach((l) => {
     let el = document.createElement('div');
     el.className = 'marker';
     el.innerHTML = (l.encounters.length != 1) ? `<div class="marker-alert">${l.encounters.length}</div>` : '';
     let marker = new mapboxgl.Marker(el,{ offset: [0, -35] }).setLngLat([l.longitude,l.latitude]).addTo(map);
-    const title = `<h3>${l.city} - ${DATE}</h3>`;
+    const title = `<h3>${l.city}</h3>`;
     const description = `<p>${l.encounters.length} Encounter${ l.encounters.length != 1 ? 's' : ''}</p>`
     const encounters = l.encounters.map((e) => {
      return `<p><strong>${e.common}</strong> - <i>${e.description}</i></p>`;

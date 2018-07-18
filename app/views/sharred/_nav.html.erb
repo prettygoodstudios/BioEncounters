@@ -18,7 +18,7 @@
       <div class="menu-item"><%= link_to "Sign Up", new_user_registration_path%></div>
     <% else %>
       <div class="menu-item menu-profile">
-        <div class="menu-profile-header"><%= current_user.email %></div>
+        <div class="menu-profile-header"><%= current_user.display %></div>
         <div class="menu-profile-items">
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "menu-profile-item" %>
           <%= link_to "My Encounters", my_encounters_path(current_user.id), class: "menu-profile-item" %>

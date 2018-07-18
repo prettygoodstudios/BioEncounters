@@ -1,13 +1,14 @@
 <div class="content-card">
   <div class="loco-map">
-    <h1 class="loco-map-right-title"><%= @date %> Encounters</h1>
+    <h1 class="loco-map-right-title"><%= @month != false ? @month : "#{@start} to #{@end}" %> Encounters</h1>
     <div id="locoMap"></div>
   </div>
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
   <script>
-    const DATE = "<%= @date %>";
-    const PATH = "<%= get_by_date_api_path(date: @date) %>".substring(1);
+    const START = "<%= @start %>";
+    const END = "<%= @end %>";
+    const PATH = "<%= get_by_range_api_path(start: @start,end: @end) %>".substring(1);
   </script>
   <%= javascript_include_tag "dateMap" %>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>

@@ -16,6 +16,13 @@ class Encounter < ApplicationRecord
     Encounter.where("date = '#{date.to_s}'").length
   end
   def self.date_range start, last
-    Encounter.find_by_sql("SELECT e.description, e.id as encounter_id, l.id as location_id, l.latitude, l.longitude, l.city, s.common FROM encounters e JOIN locations l ON e.location_id = l.id JOIN species s ON e.specie_id = s.id WHERE e.date BETWEEN '#{start}' AND '#{last}'")
+    Encounter.find_by_sql("SELECT e.description, e.date, e.id as id, e.id as encounter_id, l.id as location_id, l.latitude, l.longitude, l.city, s.common, s.id as specie_id FROM encounters e JOIN locations l ON e.location_id = l.id JOIN species s ON e.specie_id = s.id WHERE e.date BETWEEN '#{start}' AND '#{last}'")
+  end
+  def get_month
+    month = date.month
+    year = date.year
+    first_day = Date.civil(year,month,1)
+    last_day = Date.civil(year,month,-1)
+    {start: first_day, end: last_day}
   end
 end

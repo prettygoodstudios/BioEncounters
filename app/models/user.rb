@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :locations
   has_many :encounters
   has_many :species
-  
+  validates :display, presence: true
+  validates :display, uniqueness: true, if: -> { self.display.present? }
   def isMine obj
     obj.user_id == id
   end

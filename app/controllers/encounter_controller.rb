@@ -67,8 +67,9 @@ class EncounterController < ActionController::Base
   end
   def get_by_range
     @start = params[:start]
-    @end = params=[:end]
+    @end = params[:end]
     @encounters = Encounter.date_range(params[:start],params[:end])
+    @month = (@encounters.first.get_month[:start].to_s == @start && @encounters.first.get_month[:end].to_s == @end) ? "#{@start.split('-')[1]}/#{@start.split('-')[0]}" : false
   end
   def location_create return_path
     @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: current_user.id)
