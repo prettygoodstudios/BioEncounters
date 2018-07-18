@@ -11,6 +11,7 @@ fetch(`${ROOT_URL}geoapi`).then((data) => {
   data.forEach((l) => {
     let el = document.createElement('div');
     el.className = 'marker';
+    el.innerHTML = (l.encounters != 1) ? `<div class="marker-alert">${l.encounters}</div>` : '';
     let marker = new mapboxgl.Marker(el,{ offset: [0, -35] }).setLngLat([l.longitude,l.latitude]).addTo(map);
     let title = `<h3>${l.city}</h3>`;
     let address = `<p>${l.full_address}</p>`;

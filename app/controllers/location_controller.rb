@@ -12,7 +12,7 @@ class LocationController < ActionController::Base
 
   end
   def geo_json_api
-    render json: Location.all.map { |l| {city: l.city, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude} }
+    render json: Location.find_by_sql("SELECT l.*, COUNT(e.id) as pop FROM locations l LEFT JOIN encounters e ON e.location_id = l.id GROUP BY l.id").map { |l| {city: l.city, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude, encounters: l.pop} }
   end
   def get_by_state
     @locations = Location.where("state = '#{params[:state]}'").order("city ASC")
