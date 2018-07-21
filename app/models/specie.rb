@@ -2,7 +2,7 @@ class Specie < ApplicationRecord
   validate :unique_specie, :required_fields
   def unique_specie
     Specie.all.each do |s|
-      errors.add(:common, "This specie is already in our system.") if s.common == common || s.scientific == scientific
+      errors.add(:common, "This specie is already in our system.") if (s.common == common || s.scientific == scientific) && s.id != id
     end
   end
   def required_fields

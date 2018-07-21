@@ -1,7 +1,7 @@
 class Api::V1::LocationsController < ApiController
   before_action :set_location, only: [:show, :update]
   before_action :is_authenticated, only: [:create, :update]
-
+  before_action :is_mine, only: [:update]
   def index
     render json: Location.all
   end
@@ -34,7 +34,17 @@ class Api::V1::LocationsController < ApiController
 
     def is_authenticated
       if !User.authenticate_via_token params[:email], params[:token]
+        head(:unauthorized)
         redirect_to root_path, alert: "Must be authenticated to perform this action."
+      else
+        @user = User.where("email = '#{params[:email]}'").first
+      end
+    end
+
+    def is_mine
+      if !@user.is_mine @location
+        head(:unauthorized)
+        render json: { errors: "You dont have permission to perform this action."}
       end
     end
 end
