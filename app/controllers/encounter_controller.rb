@@ -126,6 +126,6 @@ class EncounterController < ActionController::Base
     redirect_to root_path, alert: "You must be logged in to perform this action." if current_user == nil
   end
   def authorized
-    redirect_to root_path, alert: "You must be the owner of this content to perform this action." if !current_user.isMine(@encounter)
+    redirect_to root_path, alert: "You must be the owner of this content to perform this action." if !current_user.is_mine(@encounter)
   end
 end

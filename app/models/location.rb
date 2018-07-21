@@ -30,7 +30,7 @@ class Location < ApplicationRecord
   end
   def unique_address
     Location.all.each do |l|
-      errors.add(:address, "This location already exists") if l.full_address == full_address
+      errors.add(:address, "This location already exists") if l.full_address == full_address && l.id != id
     end
   end
   def required_fields

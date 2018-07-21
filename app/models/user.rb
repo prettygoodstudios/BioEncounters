@@ -9,7 +9,11 @@ class User < ApplicationRecord
   has_many :species
   validates :display, presence: true
   validates :display, uniqueness: true, if: -> { self.display.present? }
-  def isMine obj
+  def is_mine obj
     obj.user_id == id
+  end
+  def self.authenticate_via_token email, token
+    user = User.where("email = '#{email}'").first
+    user.authentication_token == token
   end
 end
