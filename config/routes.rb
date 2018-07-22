@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :locations
       resources :species
+      resources :encounters
       resources :sessions, only: [:create, :destroy]
     end
   end

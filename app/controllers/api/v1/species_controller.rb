@@ -3,6 +3,7 @@ class Api::V1::SpeciesController < ApiController
   before_action :is_authenticated, only: [:create, :update]
   before_action :is_mine, only: [:update]
 
+
   def index
     render json: Specie.all
   end
