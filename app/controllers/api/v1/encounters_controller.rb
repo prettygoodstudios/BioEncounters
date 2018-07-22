@@ -1,7 +1,15 @@
 class Api::V1::EncountersController < ApiController
-  before_action :set_location, only: [:show, :update]
+  before_action :set_encounter, only: [:show, :update]
   before_action :is_authenticated, only: [:create, :update]
   before_action :is_mine, only: [:update]
+
+  def index
+    render json: Encounter.all
+  end
+
+  def show
+    render json: @encounter
+  end
 
   def create
     @location = location_create
@@ -16,11 +24,28 @@ class Api::V1::EncountersController < ApiController
             render json: @encounter.errors
           end
         rescue StandardError => e
-          render json: { errors: ["Must enter in a valid date in the correct format. Ex: 5th May 2016", e] }
+          render json: { errors: ["Must enter in a valid date in the correct format. Ex: 5th May 2016", e.backtrace ] }
         end
       end
     end
   end
+
+  def update
+    @location = location_create
+    if @location != nil
+      @specie = specie_create
+      if @specie != nil
+        if @encounter.update_attributes(encounter_params)
+          @encounter.update_attribute("specie_id",@specie.id)
+          @encounter.update_attribute("location_id",@location.id)
+          render json: @encounter
+        else
+          render json: { errors: @encounters.errors }
+        end
+      end
+    end
+  end
+
   private
     #Location and Specie Create Helper Methods
     def location_create
@@ -56,7 +81,7 @@ class Api::V1::EncountersController < ApiController
         if @specie != nil
          return @specie
         else
-          render json: { errors: "Could Not Find Species" }
+          render json: { errors: ["Could Not Find Species"]}
         end
       end
     end
@@ -64,7 +89,7 @@ class Api::V1::EncountersController < ApiController
     #Before Actions and Params
 
     def encounter_params
-      { description: params[:description], user_id: @user.id}
+      { description: params[:description]}
     end
 
     def set_encounter
@@ -80,6 +105,7 @@ class Api::V1::EncountersController < ApiController
     end
 
     def is_mine
+      puts "User #{@user.id} Encounter #{@encounter.user_id}"
       if !@user.is_mine @encounter
         head(:unauthorized)
       end

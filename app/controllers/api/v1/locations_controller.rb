@@ -13,14 +13,14 @@ class Api::V1::LocationsController < ApiController
     if @location.save
       render json: @location
     else
-      render json: { error: @location.errors}
+      render json: { errors: @location.errors}
     end
   end
   def update
     if @location.update_attributes(location_params)
       render json: @location
     else
-      render json: {error: @location.errors}
+      render json: {errors: @location.errors}
     end
   end
   private
