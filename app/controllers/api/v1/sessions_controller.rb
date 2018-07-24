@@ -10,6 +10,16 @@ class Api::V1::SessionsController < ApiController
     end
   end
 
+  def authenticate
+    if User.authenticate_via_token params[:email], params[:token]
+      user = User.where("email = '#{params[:email]}'").first
+      user.update_attribute("authentication_token",Devise.friendly_token)
+      render json: user.as_json(only: [:id, :email, :authentication_token]), status: :created
+    else
+      head(:unauthorized)
+    end
+  end
+
   def destroy
     user = User.where("email = '#{params[:email]}'").first
     if user.authentication_token == params[:token]

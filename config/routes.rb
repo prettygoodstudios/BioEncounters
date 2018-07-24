@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :species
       resources :encounters
       resources :sessions, only: [:create, :destroy]
+      post "/sessions/authenticate", "sessions#authenticate"
     end
   end
   #Route Route
