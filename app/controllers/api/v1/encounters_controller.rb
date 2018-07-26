@@ -64,7 +64,7 @@ class Api::V1::EncountersController < ApiController
     end
     def specie_create
       puts "Error Found: #{params[:toggleSpecie] == nil}"
-      if params[:toggleSpecie] != nil
+      if params[:toggleSpecie]
         @specie = Specie.create(common: params[:common], scientific: params[:scientific], user_id: @user.id)
         if @specie.save
           return @specie
