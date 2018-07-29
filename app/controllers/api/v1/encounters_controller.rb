@@ -49,7 +49,7 @@ class Api::V1::EncountersController < ApiController
   private
     #Location and Specie Create Helper Methods
     def location_create
-      @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: @user.id)
+      @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: @user.id, title: params[:title])
       if @location.save
         return @location
       else
