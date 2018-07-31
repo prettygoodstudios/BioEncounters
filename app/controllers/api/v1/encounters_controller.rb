@@ -49,15 +49,33 @@ class Api::V1::EncountersController < ApiController
   private
     #Location and Specie Create Helper Methods
     def location_create
-      @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: @user.id, title: params[:title])
-      if @location.save
-        return @location
-      else
-        if @location.errors.values.first.first == "This location already exists"
-           @location = Location.where("city = '#{params[:city]}' AND address = '#{params[:address]}' And state = '#{params[:state]}'").first
-           return @location
+      edit_location = false
+      Location.all.each do |l|
+        edit_location = true if l.title != params[:title] && l.address == params[:address] && l.state == params[:state] && l.city == params[:city] && l.country == params[:country]
+      end
+      if !edit_location
+        @location = Location.create(address: params[:address],city: params[:city], state: params[:state], country: params[:country], user_id: @user.id, title: params[:title])
+        if @location.save
+          return @location
         else
-          render json: {errors: @location.errors}
+          if @location.errors.values.first.first == "This location already exists"
+             @location = Location.where("city = '#{params[:city]}' AND address = '#{params[:address]}' And state = '#{params[:state]}'").first
+             return @location
+          else
+            render json: {errors: @location.errors}
+            return nil
+          end
+        end
+      else
+        @location = Location.where("city = '#{params[:city]}' AND address = '#{params[:address]}' And state = '#{params[:state]}'").first
+        if @location != nil && @location.update_attribute("title", params[:title])
+          return @location
+        else
+          if @location != nil
+            render json: {errors: @location.errors}
+          else
+            render json: {errors: "This is not a valid location."}
+          end
           return nil
         end
       end
