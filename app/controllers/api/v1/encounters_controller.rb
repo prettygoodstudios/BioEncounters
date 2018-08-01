@@ -11,6 +11,11 @@ class Api::V1::EncountersController < ApiController
     render json: @encounter
   end
 
+  def get_by_date
+    @encounters = Encounter.date_range(params[:start],params[:end])
+    render json: @encounters
+  end
+
   def create
     @location = location_create
     if @location != nil

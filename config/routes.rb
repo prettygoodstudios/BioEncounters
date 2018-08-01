@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/geoapi", to: "location#geo_json_api"
   get "/get_by_state", to: "location#get_by_state"
   get "/get_by_date", to: "encounter#get_by_date"
-    get "/get_by_range", to: "encounter#get_by_range"
+  get "/get_by_range", to: "encounter#get_by_range"
   get "/get_by_date_api", to: "encounter#get_by_date_api"
   get "/get_by_range_api", to: "encounter#get_by_range_api"
   get "/my_encounters", to: "encounter#my_encounters"
@@ -22,9 +22,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :locations
       resources :species
-      resources :encounters
+      resources :encounters, only: [:create, :destroy, :update, :show, :index, :destroy]
       resources :sessions, only: [:create, :destroy]
-      post "/sessions/authenticate", "sessions#authenticate"
+      post "/sessions/authenticate", to: "sessions#authenticate"
+      get "/encounters/get_by_date/range", to: "encounters#get_by_date"
     end
   end
   #Route Route
