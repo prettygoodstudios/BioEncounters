@@ -16,6 +16,11 @@ class Api::V1::EncountersController < ApiController
     render json: @encounters
   end
 
+  def get_user_encounters
+    @encounters = Encounter.where("user_id = #{params[:user]}")
+    render json: @encounters
+  end
+
   def create
     @location = location_create
     if @location != nil
