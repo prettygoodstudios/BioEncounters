@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :destroy]
       post "/sessions/authenticate", to: "sessions#authenticate"
       get "/encounters/get_by_date/range", to: "encounters#get_by_date"
+      get "/locations/states/all", to: "locations#get_states"
     end
   end
   #Route Route

@@ -25,6 +25,10 @@ class Api::V1::LocationsController < ApiController
       render json: {errors: @location.errors}
     end
   end
+  def get_states
+    render json: Location.find_by_sql("SELECT DISTINCT state FROM locations").map { |l| l.state }
+  end
+
   private
     def location_params
       params.permit(:title,:address,:city,:state,:country,:user_id)
