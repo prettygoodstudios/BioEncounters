@@ -4,7 +4,7 @@ class Api::V1::EncountersController < ApiController
   before_action :is_mine, only: [:update]
 
   def index
-    render json: Encounter.all
+    render json: Encounter.all.order("date DESC")
   end
 
   def show
@@ -20,7 +20,7 @@ class Api::V1::EncountersController < ApiController
     @encounters = Encounter.month_range(params[:start], params[:end])
     render json: @encounters
   end
-  
+
   def get_user_encounters
     @encounters = Encounter.where("user_id = #{params[:user]}")
     render json: @encounters

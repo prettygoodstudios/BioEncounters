@@ -5,7 +5,7 @@ class Api::V1::SpeciesController < ApiController
 
 
   def index
-    render json: Specie.all
+    render json: Specie.all.order("common ASC")
   end
 
   def show
