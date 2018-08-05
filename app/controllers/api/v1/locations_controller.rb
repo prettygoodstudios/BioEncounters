@@ -4,7 +4,7 @@ class Api::V1::LocationsController < ApiController
   before_action :is_mine, only: [:update]
 
   def index
-    render json: Location.find_by_sql("SELECT l.*, COUNT(e.id) as pop FROM locations l LEFT JOIN encounters e ON e.location_id = l.id GROUP BY l.id").map { |l| {city: l.city, title: l.title, state: l.state, country: l.country, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude, encounters: l.pop} }
+    render json: Location.find_by_sql("SELECT l.*, COUNT(e.id) as pop FROM locations l LEFT JOIN encounters e ON e.location_id = l.id GROUP BY l.id ORDER BY l.state ASC, l.title ASC, l.city ASC").map { |l| {city: l.city, title: l.title, state: l.state, country: l.country, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude, encounters: l.pop} }
   end
   def show
     l = @location
