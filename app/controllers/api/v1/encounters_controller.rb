@@ -12,10 +12,15 @@ class Api::V1::EncountersController < ApiController
   end
 
   def get_by_date
-    @encounters = Encounter.date_range(params[:start],params[:end])
+    @encounters = Encounter.date_range(params[:start], params[:end])
     render json: @encounters
   end
 
+  def get_by_month
+    @encounters = Encounter.month_range(params[:start], params[:end])
+    render json: @encounters
+  end
+  
   def get_user_encounters
     @encounters = Encounter.where("user_id = #{params[:user]}")
     render json: @encounters

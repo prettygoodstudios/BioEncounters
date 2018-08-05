@@ -18,6 +18,9 @@ class Encounter < ApplicationRecord
   def self.date_range start, last
     Encounter.find_by_sql("SELECT e.description, e.date, e.id as id, e.id as encounter_id, l.id as location_id, l.latitude, l.longitude, l.city, l.state as state, s.common, s.id as specie_id FROM encounters e JOIN locations l ON e.location_id = l.id JOIN species s ON e.specie_id = s.id WHERE e.date BETWEEN '#{start}' AND '#{last}'")
   end
+  def self.month_range start, last
+    Encounter.where("date_part('month', date) BETWEEN date_part('month', timestamp '2001-#{start}-16 20:38:40') AND date_part('month', timestamp '2001-#{last}-16 20:38:40')")
+  end
   def get_month
     month = date.month
     year = date.year
