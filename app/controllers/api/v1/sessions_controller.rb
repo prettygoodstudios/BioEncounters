@@ -31,7 +31,7 @@ class Api::V1::SessionsController < ApiController
   end
 
   def create_user
-    @user = User.new(user_params)
+    @user = User.create(display: params[:display], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     if @user.save
       @user.update_attribute("authentication_token",Devise.friendly_token)
       render json: @user
@@ -41,7 +41,7 @@ class Api::V1::SessionsController < ApiController
   end
 
   def user_params
-    params.permit(:display, :email, :password, :password_confirmation)
+    params.permit(:display, :email, :password, :password_confirmation, :session)
   end
 
 end
