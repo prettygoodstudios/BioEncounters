@@ -29,4 +29,19 @@ class Api::V1::SessionsController < ApiController
       head(:unauthorized)
     end
   end
+
+  def create_user
+    @user = User.new(user_params)
+    if @user.save
+      @user.update_attribute("authentication_token",Devise.friendly_token)
+      render json: @user
+    else
+      render json: {errors: @user.errors}
+    end
+  end
+
+  def user_params
+    params.permit(:display, :email, :password, :password_confirmation)
+  end
+
 end

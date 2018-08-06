@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :encounters, only: [:create, :destroy, :update, :show, :index, :destroy]
       resources :sessions, only: [:create, :destroy]
       post "/sessions/authenticate", to: "sessions#authenticate"
+      post "/sessions/create_user", to: "sessions#create_user"
       get "/encounters/get_by_date/range", to: "encounters#get_by_date"
       get "/encounters/get_by_month/range", to: "encounters#get_by_month"
       get "/encounters/user/:user", to: "encounters#get_user_encounters"
