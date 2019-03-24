@@ -21,6 +21,12 @@ class Api::V1::EncountersController < ApiController
     render json: @encounters
   end
 
+  def get_by_specie_and_month
+    month = Encounter.month_range(params[:start], params[:end])
+    @encounters = month.select { |e| e.specie_id.to_i == params[:specie_id].to_i }
+    render json: @encounters
+  end
+
   def get_user_encounters
     @encounters = Encounter.where("user_id = #{params[:user]}")
     render json: @encounters

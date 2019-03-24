@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post "/sessions/create_user", to: "sessions#create_user"
       get "/encounters/get_by_date/range", to: "encounters#get_by_date"
       get "/encounters/get_by_month/range", to: "encounters#get_by_month"
+      get "/encounters/get_by_specie_and_month/range", to: "encounters#get_by_specie_and_month"
       get "/encounters/user/:user", to: "encounters#get_user_encounters"
       get "/locations/states/all", to: "locations#get_states"
     end
