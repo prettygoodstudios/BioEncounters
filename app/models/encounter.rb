@@ -21,6 +21,10 @@ class Encounter < ApplicationRecord
   def self.month_range start, last
     Encounter.find_by_sql("SELECT e.description, e.date, e.id as id, e.id as encounter_id, l.id as location_id, l.latitude, l.longitude, l.city, l.state as state, l.address, l.title as title, l.country, s.common, s.id as specie_id FROM encounters e JOIN locations l ON e.location_id = l.id JOIN species s ON e.specie_id = s.id WHERE date_part('month', date) BETWEEN date_part('month', timestamp '2001-#{start}-01 00:00:00') AND date_part('month', timestamp '2001-#{last}-30 24:00:00') ORDER BY e.date DESC")
   end
+  def self.get_by_specie_and_month start, last, specie_id
+    encounters = Encounter.month_range(start, last)
+    encounters.select { |e| e.specie_id.to_i == specie_id.to_i }
+  end
   def get_month
     month = date.month
     year = date.year
