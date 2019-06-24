@@ -19,6 +19,7 @@
 </table>
 -->
 <div class="list">
+  <input type="text" id="encounterSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
   <% encounters.each do |e| %>
     <a class="list-item" href="<%= encounter_path(e.id) %>">
       <img src="https://www.bio-techfar.com/images/assets/leaf.png" />
@@ -33,3 +34,23 @@
     </a>
   <% end %>
 </div>
+
+<script>
+  const encounterSearch =  document.getElementById("encounterSearch");
+
+  const filterResults = () => {
+    document.querySelectorAll(".list-item").forEach((l) => {
+      if(l.innerHTML.toLowerCase().indexOf(encounterSearch.value.toLowerCase()) != -1 && encounterSearch.value != ""){
+        l.style["display"] =  "block";
+      }else if(encounterSearch.value != ""){
+          l.style["display"] =  "none";
+      }else{
+          l.style["display"] =  "block";
+      }
+    });
+  }
+
+  window.onload = filterResults();
+
+  encounterSearch.addEventListener("keyup", () => filterResults());
+</script>

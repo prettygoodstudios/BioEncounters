@@ -31,16 +31,20 @@
 </div>
 <script>
   const locationSearch =  document.getElementById("locationSearch");
-  locationSearch.addEventListener("keyup", (e) => {
-      console.log(locationSearch.value);
-      document.querySelectorAll(".list-item").forEach((l) => {
-        if(l.innerHTML.toLowerCase().indexOf(locationSearch.value.toLowerCase()) != -1 && locationSearch.value != ""){
+
+  const filterResults = () => {
+    document.querySelectorAll(".list-item").forEach((l) => {
+      if(l.innerHTML.toLowerCase().indexOf(locationSearch.value.toLowerCase()) != -1 && locationSearch.value != ""){
+        l.style["display"] =  "block";
+      }else if(locationSearch.value != ""){
+          l.style["display"] =  "none";
+      }else{
           l.style["display"] =  "block";
-        }else if(locationSearch.value != ""){
-            l.style["display"] =  "none";
-        }else{
-            l.style["display"] =  "block";
-        }
-      });
-  });
+      }
+    });
+  }
+
+  window.onload = filterResults();
+
+  locationSearch.addEventListener("keyup", () => filterResults());
 </script>
