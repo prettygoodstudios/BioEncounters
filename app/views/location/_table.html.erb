@@ -22,6 +22,7 @@
 !-->
 <div class="list">
   <input type="text" id="locationSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
+  <p id="locationSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
    <% locations.each do |l| %>
     <a class="list-item" href="<%= location_path(l.id) %>">
       <%= image_tag "pin" %>
@@ -33,13 +34,24 @@
   const locationSearch =  document.getElementById("locationSearch");
 
   const filterResults = () => {
+    let results = 0;
     document.querySelectorAll(".list-item").forEach((l) => {
-      if(l.innerHTML.toLowerCase().indexOf(locationSearch.value.toLowerCase()) != -1 && locationSearch.value != ""){
-        l.style["display"] =  "block";
-      }else if(locationSearch.value != ""){
-          l.style["display"] =  "none";
-      }else{
+      if(l.innerHTML.indexOf("pin") != -1){
+        if(l.innerHTML.toLowerCase().indexOf(locationSearch.value.toLowerCase()) != -1 && locationSearch.value != ""){
           l.style["display"] =  "block";
+          results++;
+        }else if(locationSearch.value != ""){
+            l.style["display"] =  "none";
+        }else{
+            l.style["display"] =  "block";
+            results++;
+        }
+      }
+      const locationSearchResults = document.getElementById("locationSearchResults");
+      if(results === 0){
+        locationSearchResults.style.display = "block";
+      }else{
+        locationSearchResults.style.display = "none";
       }
     });
   }

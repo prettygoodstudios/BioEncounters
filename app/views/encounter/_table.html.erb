@@ -18,8 +18,9 @@
   </tbody>
 </table>
 -->
-<div class="list">
+<div class="list" id="encounter">
   <input type="text" id="encounterSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
+  <p id="encounterSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
   <% encounters.each do |e| %>
     <a class="list-item" href="<%= encounter_path(e.id) %>">
       <img src="https://www.bio-techfar.com/images/assets/leaf.png" />
@@ -38,19 +39,30 @@
 <script>
   const encounterSearch =  document.getElementById("encounterSearch");
 
-  const filterResults = () => {
+  const filterEncounterResults = () => {
+    let resultCount = 0;
     document.querySelectorAll(".list-item").forEach((l) => {
-      if(l.innerHTML.toLowerCase().indexOf(encounterSearch.value.toLowerCase()) != -1 && encounterSearch.value != ""){
-        l.style["display"] =  "block";
-      }else if(encounterSearch.value != ""){
-          l.style["display"] =  "none";
-      }else{
+      if(l.innerHTML.indexOf("bio-techfar") != -1){
+        if(l.innerHTML.toLowerCase().indexOf(encounterSearch.value.toLowerCase()) != -1 && encounterSearch.value != ""){
           l.style["display"] =  "block";
+          resultCount++;
+        }else if(encounterSearch.value != ""){
+            l.style["display"] =  "none";
+        }else{
+            resultCount++;
+            l.style["display"] =  "block";
+        }
       }
     });
+    const searchResults = document.getElementById("encounterSearchResults");
+    if(resultCount === 0){
+      searchResults.style.display = "block";
+    }else{
+      searchResults.style.display = "none";
+    }
   }
 
-  window.onload = filterResults();
+  window.onload = filterEncounterResults();
 
-  encounterSearch.addEventListener("keyup", () => filterResults());
+  encounterSearch.addEventListener("keyup", () => filterEncounterResults());
 </script>
