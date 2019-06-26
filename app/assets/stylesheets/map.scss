@@ -44,6 +44,46 @@
   background-color: $primary-color;
   color: $light-color;
 }
+#encounterMap{
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.encounter-map{
+  height: 500px;
+  width: calc(100%+20px);
+  margin: -20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.encounter-map-mask{
+  background-color: rgba(0,0,0,0.5);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 500px;
+  z-index: 99;
+}
+.encounter-map-title{
+  color: $light-color;
+  font-size: 2.0em;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 100;
+  margin: 0px;
+  text-align: center;
+}
+.encounter-map-right-title{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
+  padding: 10px;
+  background-color: $primary-color;
+  color: $light-color;
+}
 .marker{
   height: 70px;
   width: 70px;

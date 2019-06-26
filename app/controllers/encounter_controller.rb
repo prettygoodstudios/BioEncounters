@@ -116,6 +116,10 @@ class EncounterController < ActionController::Base
     @encounters = Encounter.date_range(params[:start],params[:end])
     render json: @encounters
   end
+  def specie_geo_api
+    @encounters = Encounter.find_by_sql("SELECT l.latitude, l.longitude, l.city, l.state, l.address, l.title, e.location_id, l.country, CONCAT(l.city, ', ', l.state, ', ', l.country) as full_address FROM encounters e JOIN species s ON e.specie_id = s.id JOIN locations l ON l.id = e.location_id WHERE e.specie_id = '#{params[:specie]}' GROUP BY e.location_id, l.latitude, l.longitude, l.city, l.state, l.address, l.title, l.country") 
+    render json: @encounters
+  end
   def encounter_params
     params.permit(:description)
   end

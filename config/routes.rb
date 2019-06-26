@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/get_by_range", to: "encounter#get_by_range"
   get "/get_by_date_api", to: "encounter#get_by_date_api"
   get "/get_by_range_api", to: "encounter#get_by_range_api"
+  get "/specie_geo_api", to: "encounter#specie_geo_api"
   get "/my_encounters", to: "encounter#my_encounters"
   get "/user_encounters", to: "encounter#user_encounters"
   #V1 Api Routes

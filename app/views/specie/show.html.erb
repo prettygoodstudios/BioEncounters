@@ -1,6 +1,16 @@
 <div class="content-card">
   <h1><%= @specie.common %></h1>
   <p><%= @specie.scientific %></p>
+  <script>
+    const SPECIE_ID = <%= @specie.id.to_s %>;
+    const ZOOM = 10;
+  </script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <div class="encounter-map">
+    <div id="encounterMap"></div>
+  </div>
+  <%= javascript_include_tag 'encounterMap' %>
   <h3>Locations</h3>
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <h3>Encounters</h3>
