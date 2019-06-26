@@ -1,5 +1,7 @@
 <div class="content-card">
   <h1>Species</h1>
+  <input type="text" id="searchInput" placeholder="Search" style="width: calc(100% - 40px);margin-bottom: 20px;"/>
+  <p id="resultMessage" style="display: none;">Sorry, there are no search results.</p>
   <table>
     <thead>
       <tr>
@@ -9,7 +11,7 @@
     </thead>
     <tbody>
       <% @species.each do |s| %>
-        <tr>
+        <tr class="specieItem">
           <td><%= link_to s.common, specie_path(s.id) %></td>
           <td><%= s.scientific %></td>
         </tr>
@@ -17,3 +19,35 @@
     </tbody>
   </table>
 </div>
+<script>
+  const searchInput = document.getElementById("searchInput");
+  const filterSpecies = () => {
+    let results = 0;
+    document.querySelectorAll(".specieItem").forEach((s) => {
+      const html = s.innerHTML.toLowerCase();
+      const query = searchInput.value.toLowerCase();
+      if(html.indexOf(query) != -1 && query != ""){
+        s.style.display = "table-row";
+        results++;
+      }else if(query != ""){
+        s.style.display = "none";
+      }else{
+        s.style.display = "table-row";
+        results++;
+      }
+    });
+    const resultMessage = document.getElementById("resultMessage");
+    const header = document.querySelector("thead");
+    if(results == 0){
+      resultMessage.style.display = "block";
+      header.style.display = "none";
+    }else{
+      resultMessage.style.display = "none";
+      header.style.display = "table-header-group";
+    }
+  }
+  searchInput.addEventListener("keyup", () => {
+    filterSpecies();
+  });
+  window.onload = filterSpecies();
+</script>
