@@ -1,9 +1,10 @@
 @import "variables";
 .alert{
-  position: absolute;
   display: none;
   left: 10%;
-  top: 10%;
+  position: fixed;
+  top: 50%;
+  transform: translate(0px, -50%);
   z-index: 999999;
   background-color: $light-color;
   width: 80%;
