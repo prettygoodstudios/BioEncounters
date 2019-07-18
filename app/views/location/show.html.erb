@@ -18,7 +18,7 @@
     <%= link_to "<i class='fas fa-plus'></i>".html_safe, new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'round-button' if user_signed_in?%>
   </p>
   <h3>Encounters</h3>
-  <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
+  <%= @encounters.length != 0 ? (render(partial: "encounter/table", locals: {encounters: @encounters})) : "<p>Sorry, there are currently no encounters for this location.</p>".html_safe %>
   <br />
   <%= back_button({path: root_path}) %></h1>
 </div>
