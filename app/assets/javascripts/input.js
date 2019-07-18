@@ -2,7 +2,7 @@ const groups = document.querySelectorAll(".form-group");
 groups.forEach((g) => {
   if(g.querySelector("input").value != "") g.className = "form-group__focus";
   const input = g.querySelector("input");
-  input.addEventListener("focus", () => {
+  input.addEventListener("focusin", () => {
     g.className = "form-group__focus";
   });
   input.addEventListener("focusout", () => {
@@ -11,6 +11,9 @@ groups.forEach((g) => {
   input.addEventListener("blur", () => {
     console.log("changing");
     checkEachOne();
+  });
+  input.addEventListener("keydown", () => {
+    g.className = "form-group__focus";
   });
 });
 window.onload = () => {

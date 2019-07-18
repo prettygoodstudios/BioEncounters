@@ -14,6 +14,7 @@ input{
   border-bottom: 2px solid $dark-color;
   &:focus{
     border-bottom: 2px solid $primary-color;
+    outline: none;
   }
 }
 .push{
@@ -53,6 +54,9 @@ a{
 a:hover{
   color: $light-primary-color;
   text-decoration: underline;
+  &:hover{
+    cursor: pointer;
+  }
 }
 a{
   img{
