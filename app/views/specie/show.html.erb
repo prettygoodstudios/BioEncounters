@@ -15,4 +15,5 @@
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <h3>Encounters</h3>
   <%= render partial: "encounter/table", locals: {encounters: @encounters} %>
+  <%= render partial: "encounter/time_graph", locals: {months: @months, title: "Encounters By Month For #{@specie.common}"} %>
 </div>

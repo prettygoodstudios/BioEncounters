@@ -36,14 +36,14 @@ class Encounter < ApplicationRecord
     encounters = Encounter.find_by_sql("SELECT date_part('month', date) as month, COUNT(id) as encounter_count FROM encounters WHERE #{type === 'specie' ? 'specie_id='+id : 'location_id='+id} GROUP BY date_part('month', date) ORDER BY month ASC")
     months = []
     12.times do |i|
-      ri =  encounters.rindex { |x| x.month.to_i == i }
+      ri =  encounters.rindex { |x| x.month.to_i == i + 1 }
       if ri
         m = encounters[ri]
         months.push({ :month => m.month.to_s.split(".")[0].to_i, :encounter_count => m.encounter_count})
       else
-        months.push({ :month => i.to_i, :encounter_count => 0.to_i })
+        months.push({ :month => i + 1, :encounter_count => 0 })
       end
     end
-    puts months
+    months
   end
 end

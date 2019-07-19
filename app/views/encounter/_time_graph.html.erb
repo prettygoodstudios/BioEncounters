@@ -1,12 +1,20 @@
 <div class="time-graph">
     <div class="time-graph__title"><%= title %></div>
     <div class="time-graph__bars">
-        <%= months.each do |m|
-
-
-        %>
+        <% months.each do |m| %>
+            <div class="time-graph__bars__bar" style="height: <%=(m[:encounter_count]).floor*20%>px">
+                <div class="time-graph__bars__bar__bubble">
+                    <%= "#{m[:encounter_count]} encounters in #{Date::MONTHNAMES[m[:month]]}." %>
+                    <div class="time-graph__bars__bar__bubble__carot"></div>
+                </div>
+            </div>
+        <% end %>
     </div>
     <div class="time-graph__legend">
-
+        <% months.each do |m| %>
+            <div class="time-graph__legend__month">
+                <%= Date::ABBR_MONTHNAMES[m[:month]] %>
+            </div>
+        <% end %>
     </div>
 </div>

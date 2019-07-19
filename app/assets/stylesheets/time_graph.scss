@@ -1,0 +1,69 @@
+@import "variables";
+
+.time-graph{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    &__title{
+        width: 100%;
+        text-align: center;
+    }
+
+    &__bars{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 100px;  
+        &__bar{
+            background-color: $primary-color;
+            height: 20px;
+            width: 100%;
+            position: relative;
+
+            &__bubble{
+                display: none;
+                position: absolute;
+                left: 50%;
+                top: -5px;
+                border-radius: 3px;
+                background-color: $dark-color;
+                color: $light-color;
+                transform: translate(-50%, -100%);
+                z-index: 99;
+                font-size: 0.7em;
+                padding: 5px;
+                &__carot{
+                    position: absolute;
+                    left: 50%;
+                    top: 100%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                    background-color: #6c6c6c;
+                    width: 20px;
+                    height: 20px;
+                    z-index: -1;
+                }
+            }
+            &:hover{
+                .time-graph__bars__bar__bubble{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &__legend{
+        width:  100%;
+        border-top: 2px solid $dark-color;
+        color: $dark-color;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        &__month{
+
+        }
+    }
+}
