@@ -20,5 +20,6 @@
   <h3>Encounters</h3>
   <%= @encounters.length != 0 ? (render(partial: "encounter/table", locals: {encounters: @encounters})) : "<p>Sorry, there are currently no encounters for this location.</p>".html_safe %>
   <br />
+  <%= render partial: "encounter/time_graph", locals: {title: "Encounters For #{@location.safe_title } By Month", months: @months } %>
   <%= back_button({path: root_path}) %></h1>
 </div>

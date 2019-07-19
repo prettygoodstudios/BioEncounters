@@ -7,6 +7,7 @@ class LocationController < ActionController::Base
   def show
     @location = Location.find(params[:id])
     @encounters = Encounter.find_by_sql("SELECT e.*, s.common FROM encounters e JOIN species s ON e.specie_id = s.id WHERE e.location_id = #{params[:id].to_s} ORDER BY e.date DESC")
+    @months = Encounter.get_time_graph('location', params[:id])
   end
   def playground
 
