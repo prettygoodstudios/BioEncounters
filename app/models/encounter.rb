@@ -32,4 +32,17 @@ class Encounter < ApplicationRecord
     last_day = Date.civil(year,month,-1)
     {start: first_day, end: last_day}
   end
+  def self.get_time_graph type, id
+    encounters = Encounter.find_by_sql("SELECT date_part('month', date) as month, COUNT(id) as encounter_count FROM encounters WHERE #{type === 'specie' ? 'specie_id='+id : 'location_id='+id} GROUP BY date_part('month', date) ORDER BY month ASC")
+    months = []
+    12.times do |i|
+      m = encounters.bsearch { |x| x.month.to_i == i }
+      if m 
+        months.push({ :month => m.month.to_s.split(".")[0].to_i, :encounter_count => m.encounter_count})
+      else
+        months.push({ :month => i.to_i, :encounter_count => 0.to_i })
+      end
+    end
+    puts months
+  end
 end

@@ -8,5 +8,6 @@ class SpecieController < ActionController::Base
     @specie = Specie.find(params[:id])
     @locations = Location.joins(:encounters).where("encounters.specie_id = #{@specie.id}")
     @encounters = Encounter.where("specie_id = #{params[:id]}")
+    @months = Encounter.get_time_graph('specie', params[:id])
   end
 end
