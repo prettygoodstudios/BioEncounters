@@ -42,7 +42,10 @@
     }
   }
 
-  window.onload = filterEncounterResults();
+  window.onload = () => {
+    window.onload();
+    filterEncounterResults();
+  }
 
   encounterSearch.addEventListener("keyup", () => filterEncounterResults());
 </script>

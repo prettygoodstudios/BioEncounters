@@ -69,3 +69,11 @@
         }
     }
 }
+
+@media only screen and (max-width: 450px){
+    .time-graph{
+        &__legend{
+            font-size: 0.5em;
+        }
+    }
+}
