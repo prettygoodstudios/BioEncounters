@@ -1,25 +1,3 @@
-<!--
-<table>
-  <thead>
-    <tr>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% locations.each do |l| %>
-      <tr>
-        <td><%= link_to ((l.address != "") ? l.address : 'View'), location_path(l.id) %></td>
-        <td><%= l.city %></td>
-        <td><%= link_to l.state, get_by_state_path(state: l.state) %></td>
-        <td><%= l.country %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-!-->
 <div class="list">
   <input type="text" id="locationSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
   <p id="locationSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
@@ -56,7 +34,10 @@
     });
   }
 
-  window.onload = filterResults();
+  window.onload = () => {
+    window.onload();
+    filterEncounterResults();
+  }
 
   locationSearch.addEventListener("keyup", () => filterResults());
 </script>
