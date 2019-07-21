@@ -121,8 +121,96 @@ class EncounterController < ActionController::Base
     render json: @encounters
   end
   def get_encounters_time_graph_api
-    @encounters = Encounter.find_by_sql("SELECT date_part('month', date) as month, COUNT(id) as encounter_count FROM encounters WHERE specie_id = #{params[:specie]} GROUP BY date_part('month',date) ORDER BY month ASC")
+    @encounters = Encounter.find_by_sql("SELECT date_part('month', date) as month, COUNT(id) as encounter_count FROM encounters WHERE specie_id = #{params[:specie]} GROUP BY date_part('month', date) ORDER BY month ASC")
     render json:  @encounters
+  end
+
+  def csv_upload
+
+  end
+
+  def import_csv
+    file = params[:file]
+    months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    species = []
+    encounters = []
+    locations = []
+    first = true
+    rows = 0
+    successes = 0
+    CSV.foreach(file.path, headers: true) do |row|
+      begin
+        if !first
+           cell = row[2]
+           location = ""
+           date = ""
+           monthFormat = false
+           rows++
+           months.each do |month|
+             if cell.include? month
+               vals = cell.split(month)
+               location = vals[0]
+               date = month + vals[1]
+               monthFormat = true
+             end
+           end
+           if !monthFormat
+             firstStr = false
+             segs = cell.split("/")
+             month = months[segs[0].split(" ").last.to_i]
+             day = segs[1]
+             year = segs[2]
+             date = [month,day,year].join(" ")
+             temp = segs[0].split(" ")
+             temp.pop
+             fin = temp.join(" ")
+             location = fin
+           end
+           found = false
+           x = { common_name: row[0], scientific_name: row[1] }
+           species.each do |specie|
+             found = true if x == specie
+           end
+           Specie.all.each do |specie|
+             found = true if x[:scientific_name] == specie.scientific
+           end
+           exists = false
+           l = { city: location.split(",")[2].strip, state: location.split(",")[0].strip, country: "United States of America" }
+           locations.each do |location|
+             exists = true if l[:city].strip == location[:city].strip
+           end
+           Location.all.each do |location|
+             exists = true if l[:city].strip == location.city.strip
+           end
+           e = { observations: row[3], date: date, location: l, specie: x }
+           species.push(x) if !found || species.length + Specie.all.length == 0
+           encounters.push(e)
+           locations.push(l) if !exists || locations.length + Location.all.length == 0
+           successes++
+       else
+         first = false
+       end
+     rescue Exception => e
+       puts "Error Message: #{e.message}"
+       puts "Error Found: #{row}"
+     end
+    end
+    locations.each do |l|
+      Location.create!(city: l[:city], state: l[:state], title: "Untitled", country: l[:country], address: "", user_id: 1)
+    end
+    species.each do |s,i|
+      Specie.create!(scientific: s[:scientific_name], common: s[:common_name])
+    end
+    encounters.each do |e,i|
+      loco = Location.where("city like '%#{e[:location][:city]}%'").first
+      spec = Specie.where("scientific='#{e[:specie][:scientific_name]}'").first.id
+      loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
+    end
+    redirect_to "/admin/success"
+  end
+  def csv_upload_success
+    @successes = params[:successes]
+    @rows = params[:rows]
   end
   def encounter_params
     params.permit(:description)
