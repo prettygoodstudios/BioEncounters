@@ -1,0 +1,9 @@
+<div class="content-card">
+  <h1>Import Encounters Into The System By Uploading a CSV</h1>
+  <hr>
+  <p>A CSV is a file that can be exported from spreadsheet applications such as Google Sheets and Microsoft Excel. Encounters can be uploaded by community members to the system using this form. The form requires a CSV file with the following format.</p>
+  <%= form_tag("/encounter/csv/import_api", method: "post", :multipart => true) do %>
+    <%= file_field_tag :file, style: "border: none;" %>
+    <%= submit_tag "Upload", class: "green-button", style: "display: block; margin-top: 20px;" %>
+  <% end %>
+</div>

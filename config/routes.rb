@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   get "/my_encounters", to: "encounter#my_encounters"
   get "/user_encounters", to: "encounter#user_encounters"
   get "/get_specie_encounter_graph_api/:specie", to: "encounter#get_encounters_time_graph_api"
-  get "/encounter/csv_upload", to: "encounter#csv_upload",
-  post "/encounter/csv_import_api", to: "encounter#import_csv"
-  get "/encounter/csv_upload_success", to: "encounter#csv_upload_success"
+  get "/encounter/csv/upload", to: "encounter#csv_upload"
+  post "/encounter/csv/import_api", to: "encounter#import_csv"
+  get "/encounter/csv/success", to: "encounter#csv_upload_success"
   #V1 Api Routes
   namespace :api do
     namespace :v1 do

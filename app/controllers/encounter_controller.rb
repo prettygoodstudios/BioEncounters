@@ -136,16 +136,16 @@ class EncounterController < ActionController::Base
     encounters = []
     locations = []
     first = true
-    rows = 0
     successes = 0
+    rows = 0
     CSV.foreach(file.path, headers: true) do |row|
       begin
         if !first
            cell = row[2]
+           rows++
            location = ""
            date = ""
            monthFormat = false
-           rows++
            months.each do |month|
              if cell.include? month
                vals = cell.split(month)
@@ -185,8 +185,8 @@ class EncounterController < ActionController::Base
            e = { observations: row[3], date: date, location: l, specie: x }
            species.push(x) if !found || species.length + Specie.all.length == 0
            encounters.push(e)
-           locations.push(l) if !exists || locations.length + Location.all.length == 0
            successes++
+           locations.push(l) if (!exists || locations.length + Location.all.length == 0)
        else
          first = false
        end
@@ -206,7 +206,7 @@ class EncounterController < ActionController::Base
       spec = Specie.where("scientific='#{e[:specie][:scientific_name]}'").first.id
       loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
     end
-    redirect_to "/admin/success"
+    redirect_to "/encounter/csv/success", alert: "#{successes}/#{rows} of submitted encounters were uploaded successfully."
   end
   def csv_upload_success
     @successes = params[:successes]
