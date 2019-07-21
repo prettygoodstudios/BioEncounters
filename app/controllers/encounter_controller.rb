@@ -142,7 +142,7 @@ class EncounterController < ActionController::Base
       begin
         if !first
            cell = row[2]
-           rows++
+           rows += 1
            location = ""
            date = ""
            monthFormat = false
@@ -172,7 +172,7 @@ class EncounterController < ActionController::Base
              found = true if x == specie
            end
            Specie.all.each do |specie|
-             found = true if x[:scientific_name] == specie.scientific
+             found = true if x[:scientific_name] == specie.scientific || x[:common_name] == specie.common
            end
            exists = false
            l = { city: location.split(",")[2].strip, state: location.split(",")[0].strip, country: "United States of America" }
@@ -185,13 +185,13 @@ class EncounterController < ActionController::Base
            e = { observations: row[3], date: date, location: l, specie: x }
            species.push(x) if !found || species.length + Specie.all.length == 0
            encounters.push(e)
-           successes++
+           successes += 1
            locations.push(l) if (!exists || locations.length + Location.all.length == 0)
        else
          first = false
        end
      rescue Exception => e
-       puts "Error Message: #{e.message}"
+       puts "Error Message: #{e.message} - #{e.backtrace.inspect}"
        puts "Error Found: #{row}"
      end
     end
@@ -203,7 +203,11 @@ class EncounterController < ActionController::Base
     end
     encounters.each do |e,i|
       loco = Location.where("city like '%#{e[:location][:city]}%'").first
-      spec = Specie.where("scientific='#{e[:specie][:scientific_name]}'").first.id
+      spec = Specie.where("scientific='#{e[:specie][:scientific_name]}'")
+      if spec.length == 0
+        spec = Specie.where("common='#{e[:specie][:common_name]}'")
+      end
+      spec = spec.first.id
       loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
     end
     redirect_to "/encounter/csv/success", alert: "#{successes}/#{rows} of submitted encounters were uploaded successfully."
