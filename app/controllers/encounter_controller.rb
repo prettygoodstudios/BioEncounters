@@ -185,7 +185,6 @@ class EncounterController < ActionController::Base
            e = { observations: row[3], date: date, location: l, specie: x }
            species.push(x) if !found || species.length + Specie.all.length == 0
            encounters.push(e)
-           successes += 1
            locations.push(l) if (!exists || locations.length + Location.all.length == 0)
        else
          first = false
@@ -208,7 +207,11 @@ class EncounterController < ActionController::Base
         spec = Specie.where("common='#{e[:specie][:common_name]}'")
       end
       spec = spec.first.id
-      loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
+      dupes = Encounter.where("description='#{e[:observations]}' AND specie_id = #{spec}")
+      if dupes.length == 0
+        loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
+        successes += 1
+      end
     end
     redirect_to "/encounter/csv/success", alert: "#{successes}/#{rows} of submitted encounters were uploaded successfully."
   end
