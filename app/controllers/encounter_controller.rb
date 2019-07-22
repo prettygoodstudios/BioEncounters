@@ -6,7 +6,7 @@ class EncounterController < ActionController::Base
   before_action :authorized, only: [:edit,:update]
   def show
     @location = Location.find(@encounter.location_id)
-    @user = User.find(@encounter.user_id)
+    @user = @encounter.user_id ? User.find(@encounter.user_id) : nil
     @specie = Specie.find(@encounter.specie_id)
   end
   def new

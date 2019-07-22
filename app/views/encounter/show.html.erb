@@ -7,7 +7,7 @@
   <%= link_to "<i class='fas fa-calendar-alt'></i> #{@encounter.date.month}/#{@encounter.date.year} Encounters".html_safe, get_by_range_path(@encounter.get_month) %>
   <br />
   <br />
-  <%= link_to "<i class='fas fa-search'></i> #{@user.display}".html_safe, user_encounters_path(user: @user.id) %>
+  <%= link_to "<i class='fas fa-search'></i> #{@user.display}".html_safe, user_encounters_path(user: @user.id) if @user %>
   <p><%= link_to "Edit", edit_encounter_path if signed_in? && current_user.is_mine(@encounter) %></p>
   <p><%= @encounter.description %></p>
   <%= back_button({ path: location_path(@encounter.location_id)}) %>
