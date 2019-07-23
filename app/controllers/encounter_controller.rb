@@ -192,7 +192,7 @@ class EncounterController < ActionController::Base
        end
      rescue Exception => e
        puts "Error Message: #{e.message} - #{e.backtrace.inspect}"
-       error.push({ error: "The following row is formatted incorrectly.", row: row})
+       errors.push({ error: "The following row is formatted incorrectly.", row: row})
        puts "Error Found: #{row}"
      end
     end

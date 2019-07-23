@@ -4,27 +4,47 @@
   <%= "<p>The following rows had issues that prevented them from being uploaded.</p>".html_safe if @errors.length > 0 %>
   <ul>
     <% @errors.each do |e| %>
-      <li><%= e[:error] %> 
-        <table>
-          <thead>
-            <tr>
-              <% eval(e[:row]).keys.each do |k| %>
-                <th><%= k %></th>
-              <% end %>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <% eval(e[:row]).values.each do |v| %>
-                <% if v.instance_of? Hash%>
-                  <td><%= v.values.join(", ")%></td>
-                <% else %>
+      <li><%= e[:error] %>
+        <% if e[:row].split("=>").length > 1 %> 
+          <table>
+            <thead>
+              <tr>
+                <% eval(e[:row]).keys.each do |k| %>
+                  <th><%= k %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% eval(e[:row]).values.each do |v| %>
+                  <% if v.instance_of? Hash%>
+                    <td><%= v.values.join(", ")%></td>
+                  <% else %>
+                    <td><%= v %></td>
+                  <% end %>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        <% else %>
+          <% tvalues = [e[:row].split('",')[1], e[:row].split(',"')[1].split('",')[0], e[:row].split(',"')[0]]%>
+          <table>
+            <thead>
+              <tr>
+                <% ['observations', 'date & location', 'specie'].each do |h| %>
+                  <th><%= h %></th>
+                <% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <% tvalues.each do |v| %>
                   <td><%= v %></td>
                 <% end %>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
       </li>
     <% end %>
   </ul>
