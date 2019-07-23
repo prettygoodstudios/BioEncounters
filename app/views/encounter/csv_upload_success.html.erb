@@ -1,3 +1,28 @@
 <div class="content-card">
   <h1>The CSV Upload Form Was Submitted Successfully!</h1>
+  <p>Thank you for your contribution.</p>
+  <%= "<p>The following rows had issues that prevented them from being uploaded.</p>".html_safe if @errors.length > 0 %>
+  <ul>
+    <% @errors.each do |e| %>
+      <li><%= e[:error] %> 
+        <table>
+          <thead>
+            <tr>
+              <% eval(e[:row]).keys.each do |k| %>
+                <th><%= k %></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% eval(e[:row]).values.each do |v| %>
+                <td><%= v %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    <% end %>
+  </ul>
+  <%= "<p>There are #{@remainder} additional rows with issues.".html_safe if @remainder.to_i > 0%>
 </div>

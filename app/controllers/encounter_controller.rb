@@ -138,6 +138,7 @@ class EncounterController < ActionController::Base
     first = true
     successes = 0
     rows = 0
+    errors = []
     CSV.foreach(file.path, headers: true) do |row|
       begin
         if !first
@@ -191,6 +192,7 @@ class EncounterController < ActionController::Base
        end
      rescue Exception => e
        puts "Error Message: #{e.message} - #{e.backtrace.inspect}"
+       error.push({ error: "The following row is formatted incorrectly.", row: row})
        puts "Error Found: #{row}"
      end
     end
@@ -211,13 +213,15 @@ class EncounterController < ActionController::Base
       if dupes.length == 0
         loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
         successes += 1
+      else  
+        errors.push({ error: "The following row is a duplicate encounter.", row: e.to_s})
       end
     end
-    redirect_to "/encounter/csv/success", alert: "#{successes}/#{rows} of submitted encounters were uploaded successfully."
+    redirect_to encounter_csv_success_url(errors: errors.first(10), remainder: errors.length > 10 ? errors.length - 10 : 0), alert: "#{successes}/#{rows} of submitted encounters were uploaded successfully."
   end
   def csv_upload_success
-    @successes = params[:successes]
-    @rows = params[:rows]
+    @errors = params[:errors]
+    @remainder = params[:remainder]
   end
   def encounter_params
     params.permit(:description)
