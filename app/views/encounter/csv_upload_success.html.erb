@@ -16,7 +16,11 @@
           <tbody>
             <tr>
               <% eval(e[:row]).values.each do |v| %>
-                <td><%= v %></td>
+                <% if v.instance_of? Hash%>
+                  <td><%= v.values.join(", ")%></td>
+                <% else %>
+                  <td><%= v %></td>
+                <% end %>
               <% end %>
             </tr>
           </tbody>
