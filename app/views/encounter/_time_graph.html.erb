@@ -1,7 +1,8 @@
 <div class="time-graph">
     <div class="time-graph__title"><%= title %></div>
     <div class="time-graph__bars">
-        <% block_height = (300/months.sort { |x,y| y[:encounter_count] <=> x[:encounter_count] }.first[:encounter_count]).ceil %>
+        <% max_blocks = months.sort { |x,y| y[:encounter_count] <=> x[:encounter_count] }.first[:encounter_count] %>
+        <% block_height = max_blocks > 0 ? (300/max_blocks).ceil : 50 %>
         <% months.each do |m| %>
             <div class="time-graph__bars__bar" style="height: <%=(m[:encounter_count]).floor*block_height%>px">
                 <div class="time-graph__bars__bar__bubble">
