@@ -33,7 +33,20 @@ class Encounter < ApplicationRecord
     {start: first_day, end: last_day}
   end
   def self.get_time_graph type, id
-    encounters = Encounter.find_by_sql("SELECT date_part('month', date) as month, COUNT(id) as encounter_count FROM encounters WHERE #{type === 'specie' ? 'specie_id='+id : 'location_id='+id} GROUP BY date_part('month', date) ORDER BY month ASC")
+    where_clause = ""
+    case type
+
+    when 'state'
+      where_clause = "l.state='#{id}'"
+    when 'specie'
+      where_clause = 'e.specie_id='+id
+    when 'location'
+      where_clause = 'e.location_id='+id
+    else
+      where_clause = 'e.location_id='+id
+    end
+      
+    encounters = Encounter.find_by_sql("SELECT date_part('month', e.date) as month, COUNT(e.id) as encounter_count FROM encounters e LEFT JOIN locations l ON e.location_id = l.id WHERE #{where_clause} GROUP BY date_part('month', e.date) ORDER BY month ASC")
     months = []
     12.times do |i|
       ri =  encounters.rindex { |x| x.month.to_i == i + 1 }

@@ -17,5 +17,6 @@ class LocationController < ActionController::Base
   end
   def get_by_state
     @locations = Location.where("state = '#{params[:state]}'").order("city ASC")
+    @months = Encounter.get_time_graph('state', params[:state])
   end
 end

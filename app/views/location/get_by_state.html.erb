@@ -13,5 +13,6 @@
   <%= javascript_include_tag 'locationMap' %>
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <br />
+  <%= render partial: "encounter/time_graph", locals: {title: "Encounters For #{params[:state]} By Month", months: @months } %>
   <%= back_button({path: root_path}) %>
 </div>
