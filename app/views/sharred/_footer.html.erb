@@ -2,6 +2,7 @@
   <div class="footer-section">
     <div class="emphasis">Usefull Links</div>
     <a href="https://github.com/prettygoodstudios/BioEncounters">Github Repo</a>
+    <%= link_to "Community CSV Upload", encounter_csv_upload_path %>
     <%= link_to "Admin", admin_path if signed_in? && current_user.role == "admin" %>
   </div>
   <div class="footer-section">
