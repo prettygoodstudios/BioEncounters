@@ -7,7 +7,7 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
   <script>
-    const LOCATION = [<%= Location.state(params[:state])[:latitude] %>, <%= Location.state(params[:state])[:longitude] %>];
+    const LOCATION = [<%= @state ? @state.latitude : Location.state(params[:state])[:latitude] %>, <%= @state ? @state.longitude : Location.state(params[:state])[:longitude] %>];
     const ZOOM = 6;
   </script>
   <%= javascript_include_tag 'locationMap' %>
