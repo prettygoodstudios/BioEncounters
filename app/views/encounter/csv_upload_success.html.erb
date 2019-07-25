@@ -1,9 +1,14 @@
 <div class="content-card">
-  <h1>The CSV Upload Form Was Submitted Successfully!</h1>
-  <p>Thank you for your contribution.</p>
-  <%= "<p>The following rows had issues that prevented them from being uploaded.</p>".html_safe if @errors && @errors.length > 0 %>
+  <% if @errors.first[:row].to_i != -1 %>
+    <h1>The CSV Upload Form Was Submitted Successfully!</h1>
+    <p>Thank you for your contribution.</p>
+  <% else %>
+    <h1>The file you uploaded is not a properly formatted CSV.</h1>
+    <p>Please try again with a properly formatted file.</p>
+  <% end %>
+  <%= "<p>The following rows had issues that prevented them from being uploaded.</p>".html_safe if @errors && @errors.length > 0 && @errors.first[:row].to_i != -1 %>
   <ul>
-    <% if @errors %>
+    <% if @errors && @errors.first[:row].to_i != -1  %>
       <% @errors.each do |e| %>
         <li><%= e[:error] %>
           <% if e[:row].split("=>").length > 1 %> 
@@ -50,5 +55,5 @@
       <% end%>
     <% end %>
   </ul>
-  <%= "<p>There are #{@remainder} additional rows with issues.".html_safe if @remainder.to_i > 0%>
+  <%= "<p>There are #{@remainder} additional rows with issues.".html_safe if @remainder.to_i > 0 && @errors.first[:row].to_i != -1 %>
 </div>

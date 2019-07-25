@@ -139,62 +139,67 @@ class EncounterController < ActionController::Base
     successes = 0
     rows = 0
     errors = []
-    CSV.foreach(file.path, headers: true) do |row|
-      begin
-        if !first
-           cell = row[2]
-           rows += 1
-           location = ""
-           date = ""
-           monthFormat = false
-           months.each do |month|
-             if cell.include? month
-               vals = cell.split(month)
-               location = vals[0]
-               date = month + vals[1]
-               monthFormat = true
-             end
-           end
-           if !monthFormat
-             firstStr = false
-             segs = cell.split("/")
-             month = months[segs[0].split(" ").last.to_i]
-             day = segs[1]
-             year = segs[2]
-             date = [month,day,year].join(" ")
-             temp = segs[0].split(" ")
-             temp.pop
-             fin = temp.join(" ")
-             location = fin
-           end
-           found = false
-           x = { common_name: row[0], scientific_name: row[1] }
-           species.each do |specie|
-             found = true if x == specie
-           end
-           Specie.all.each do |specie|
-             found = true if x[:scientific_name] == specie.scientific || x[:common_name] == specie.common
-           end
-           exists = false
-           l = { city: location.split(",")[2].strip, state: location.split(",")[0].strip, country: "United States of America" }
-           locations.each do |location|
-             exists = true if l[:city].strip == location[:city].strip
-           end
-           Location.all.each do |location|
-             exists = true if l[:city].strip == location.city.strip
-           end
-           e = { observations: row[3], date: date, location: l, specie: x }
-           species.push(x) if !found || species.length + Specie.all.length == 0
-           encounters.push(e)
-           locations.push(l) if (!exists || locations.length + Location.all.length == 0)
-       else
-         first = false
-       end
-     rescue Exception => e
-       puts "Error Message: #{e.message} - #{e.backtrace.inspect}"
-       errors.push({ error: "The following row is formatted incorrectly.", row: row})
-       puts "Error Found: #{row}"
-     end
+    begin
+      CSV.foreach(file.path, headers: true) do |row|
+        begin
+          if !first
+            cell = row[2]
+            rows += 1
+            location = ""
+            date = ""
+            monthFormat = false
+            months.each do |month|
+              if cell.include? month
+                vals = cell.split(month)
+                location = vals[0]
+                date = month + vals[1]
+                monthFormat = true
+              end
+            end
+            if !monthFormat
+              firstStr = false
+              segs = cell.split("/")
+              month = months[segs[0].split(" ").last.to_i]
+              day = segs[1]
+              year = segs[2]
+              date = [month,day,year].join(" ")
+              temp = segs[0].split(" ")
+              temp.pop
+              fin = temp.join(" ")
+              location = fin
+            end
+            found = false
+            x = { common_name: row[0], scientific_name: row[1] }
+            species.each do |specie|
+              found = true if x == specie
+            end
+            Specie.all.each do |specie|
+              found = true if x[:scientific_name] == specie.scientific || x[:common_name] == specie.common
+            end
+            exists = false
+            l = location.split(",").length == 3 ? { city: location.split(",")[2].strip, state: location.split(",")[0].strip, country: "United States of America" } : { city: location.split(",")[3].strip, state: location.split(",")[1].strip, country: location.split(",")[0].strip }
+            locations.each do |location|
+              exists = true if l[:city].strip == location[:city].strip && location[:state] == l[:state].strip
+            end
+            Location.all.each do |location|
+              exists = true if l[:city].strip == location.city.strip && location[:state] == l[:state].strip
+            end
+            e = { observations: row[3], date: date, location: l, specie: x }
+            species.push(x) if !found || species.length + Specie.all.length == 0
+            encounters.push(e)
+            locations.push(l) if (!exists || locations.length + Location.all.length == 0)
+        else
+          first = false
+        end
+      rescue Exception => e
+        puts "Error Message: #{e.message} - #{e.backtrace.inspect}"
+        errors.push({ error: "The following row is formatted incorrectly.", row: row})
+        puts "Error Found: #{row}"
+      end
+      end
+    rescue Exception => e  
+      puts "CSV Error: #{e}"
+      errors.push({ error: "You must provide a valid CSV.", row: -1})
     end
     locations.each do |l|
       Location.create!(city: l[:city], state: l[:state], title: "Untitled", country: l[:country], address: "", user_id: 1)
