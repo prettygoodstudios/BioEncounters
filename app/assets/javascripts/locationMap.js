@@ -3,7 +3,6 @@ let map = new mapboxgl.Map({
   container: 'locoMap',
   style: 'mapbox://styles/prettygoodstudios/cjiwl3mup71c72rmsfn9xeupa',
 });
-map.flyTo({center: [LOCATION[1],LOCATION[0]], zoom: ZOOM});
 fetch(`${ROOT_URL}geoapi`).then((data) => {
   return(data.json());
 }).then((data) => {
@@ -26,3 +25,5 @@ map.on('style.load', function () {
     }
 });
 });
+
+window.setTimeout(() => map.flyTo({center: [LOCATION[1],LOCATION[0]], zoom: ZOOM}), 200);
