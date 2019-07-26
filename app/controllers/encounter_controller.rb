@@ -214,7 +214,7 @@ class EncounterController < ActionController::Base
         spec = Specie.where("common='#{e[:specie][:common_name]}'")
       end
       spec = spec.first.id
-      dupes = Encounter.all.to_a.rindex { |n| n.description == e[:observations] && n.specie_id = spec } != -1
+      dupes = Encounter.all.to_a.rindex { |n| n.description == e[:observations] && n.specie_id = spec }
       if dupes == nil
         loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
         successes += 1
