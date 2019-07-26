@@ -13,10 +13,12 @@
   </script>
   <%= javascript_include_tag 'locationMap' %>
   <%= link_to "<i class='fas fa-map-marked'></i> View all encounters in #{@location.state}.".html_safe, get_by_state_path(state: @location.state) %>
-  <p>
-    Create New Encounter
-    <%= link_to "<i class='fas fa-plus'></i>".html_safe, new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'round-button' if user_signed_in?%>
-  </p>
+  <% if user_signed_in? %>
+    <p>
+      Create New Encounter
+      <%= link_to "<i class='fas fa-plus'></i>".html_safe, new_encounter_path(address: @location.address, city: @location.city, state: @location.state, country: @location.country), class: 'round-button'%>
+    </p>
+  <% end %>
   <h3>Encounters</h3>
   <%= @encounters.length != 0 ? (render(partial: "encounter/table", locals: {encounters: @encounters})) : "<p>Sorry, there are currently no encounters for this location.</p>".html_safe %>
   <br />

@@ -30,7 +30,7 @@ document.addEventListener("touchstart", ({touches}) => {
 
 document.addEventListener("touchend", ({changedTouches}) => {
   const {clientX, clientY} = changedTouches[0];
-  const shouldToggle = (menu.className.indexOf("menu__show") == -1) ? (clientX - touchStartX > 50 && touchStartX < 100) : (touchStartX - clientX > 50 && touchStartX < document.querySelector(".menu__show").clientWidth);
+  const shouldToggle = (menu.className.indexOf("menu__show") == -1) ? (clientX - touchStartX > 50 && touchStartX < 100 && Math.abs(clientY - touchStartY) < 100) : (touchStartX - clientX > 50 && touchStartX < document.querySelector(".menu__show").clientWidth);
   if(shouldToggle) toggleMenu();
   touchStartX = 0;
   touchStartY = 0;

@@ -176,6 +176,9 @@ nav{
             }
           }
         }
+        &:focus{
+          outline: none;
+        }
         &__closed{
           background: none !important;
           .toggle-one{
