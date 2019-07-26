@@ -26,4 +26,16 @@ map.on('style.load', function () {
 });
 });
 
-window.setTimeout(() => map.flyTo({center: [LOCATION[1],LOCATION[0]], zoom: ZOOM}), 200);
+let observer = new MutationObserver((mutations, me) => {
+  let mapContainer = document.querySelector(".mapboxgl-canvas-container");
+  if(mapContainer){
+    map.flyTo({center: [LOCATION[1],LOCATION[0]], zoom: ZOOM});
+    MutationObserver.disconnect();
+    return;
+  }
+});
+
+observer.observe(document, {
+  childList: true,
+  subtree: true
+});
