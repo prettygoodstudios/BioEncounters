@@ -32,6 +32,9 @@
   @include standard-button($background-color: $primary-color, $color: $light-color, $font-size: 1.4em){
       /*font-family: 'Courier New';*/
   }
+  i{
+    margin-right: 10px;
+  }
   &:hover{
     @include standard-button($background-color: $primary-color, $color: $light-color, $font-size: 1.4em);
   }
