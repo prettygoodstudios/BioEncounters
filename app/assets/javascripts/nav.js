@@ -19,6 +19,7 @@ toggleButton.addEventListener("click", toggleMenu);
 if(document.querySelectorAll(".menu-profile").length != 0){
   profileMenu.addEventListener("click",function(){
     if(window.innerWidth <= 500) profileItems.classList.toggle("menu-profile-items-hover");
+    if(window.innerWidth <= 500) profileMenu.classList.toggle("menu-profile-header-hover");
   });
 }
 

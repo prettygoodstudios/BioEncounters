@@ -14,6 +14,7 @@ nav{
   z-index: 999;
   box-shadow: 4px 1px 10px 1px rgba(0,0,0,0.3);
   .menu{
+    max-width: calc(100vw + 20px);
     &__show{
       display: flex;
       transform: translate(0,0);
@@ -66,16 +67,51 @@ nav{
         background-color: $dark-white-color;
       }
     }
+    .menu-profile-header-hover{
+      .menu-profile-header__carot{
+        transform: rotate(225deg) !important;
+      }
+    }
     .menu-profile{
       position: relative;
       .menu-profile-header{
         align-self: flex-start;
         color: $dark-color;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: calc(100% - 20px);
+        &__carot{
+          border-width: 0px 4px 4px 0px;
+          border-style: solid;
+          border-color: $dark-color;
+          width: 10px;
+          height: 10px;
+          border-radius: 2px;
+          transform: rotate(45deg);
+          display: inline-block;
+          margin-left: 10px;
+          transition: 1s ease transform;
+        }
+        i{
+          font-size: 2em;
+        }
+        div{
+          display: flex;
+          align-items: center;
+        }
       }
       .menu-profile-items{
         display: none;
+        width: calc(100% - 40px);
         a{
           width: 100%;
+          display: block !important;
+          text-align: right;
+          i{
+            display: inline-block;
+          }
           &:hover{
             color: $primary-color;
           }
@@ -91,6 +127,9 @@ nav{
             display: flex;
             flex-direction: column;
             background-color: $light-color;
+          }
+          .menu-profile-header__carot{
+            transform: rotate(225deg);
           }
         }
       }
