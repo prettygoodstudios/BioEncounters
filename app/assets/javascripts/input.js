@@ -15,6 +15,9 @@ groups.forEach((g) => {
   input.addEventListener("keydown", () => {
     g.className = "form-group__focus";
   });
+  input.addEventListener("change", () => {
+    g.className = "form-group__focus";
+  });
 });
 window.onload = () => {
   checkEachOne();
