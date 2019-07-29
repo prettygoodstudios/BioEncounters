@@ -216,7 +216,11 @@ class EncounterController < ActionController::Base
       spec = spec.first.id
       dupes = Encounter.all.to_a.rindex { |n| n.description == e[:observations] && n.specie_id = spec }
       if dupes == nil
-        loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
+        begin
+          loco.encounters.create!(description: e[:observations], date: e[:date], specie_id: spec)
+        rescue Exception => error_message  
+          errors.push({ error: "The following encounter is not formatted correctly.", row: e.to_s})
+        end
         successes += 1
       else  
         errors.push({ error: "The following row is a duplicate encounter.", row: e.to_s})
