@@ -56,3 +56,7 @@ gem 'devise'
 gem 'geocoder'
 gem 'csv'
 gem 'simple_token_authentication', '~> 1.0' # see semver.org
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
