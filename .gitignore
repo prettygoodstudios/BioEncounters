@@ -17,4 +17,7 @@
 /yarn-error.log
 
 .byebug_history
-/config/initializers/geocoder.rb
+#/config/initializers/geocoder.rb
+.env
+# Ignore application configuration
+/config/application.yml
