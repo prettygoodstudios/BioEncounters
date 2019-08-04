@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: bioencounters_production
-  username: bioencounters
+  username: deploy
   password: <%= ENV['BIOENCOUNTERS_DATABASE_PASSWORD'] %>
