@@ -42,3 +42,4 @@ require 'capistrano/rbenv'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.6.3'
+require 'capistrano/rake'
