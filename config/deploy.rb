@@ -4,7 +4,7 @@ lock "~> 3.11.0"
 set :application, "bioencounters"
 set :repo_url, "https://github.com/prettygoodstudios/BioEncounters.git"
 set :deploy_to, "/home/ubuntu/#{fetch :application}"
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/assets'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/cache/assets/sprockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'public/assets'
 set :keep_releases, 5
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
