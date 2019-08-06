@@ -12,7 +12,7 @@
     const ZOOM = 10;
   </script>
   <%= javascript_include_tag 'locationMap' %>
-  <%= link_to "<i class='fas fa-map-marked'></i> View all encounters in #{@location.state}.".html_safe, get_by_state_path(state: @location.state) %>
+  <%= link_to "<i class='fas fa-map-marked'></i> View all encounters in #{@location.state}.".html_safe, "/get_by_state/"+URI.encode(@location.state) %>
   <% if user_signed_in? %>
     <p>
       Create New Encounter

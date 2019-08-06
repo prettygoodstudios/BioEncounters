@@ -1,4 +1,6 @@
 class Location < ApplicationRecord
+  extend FriendlyId
+  friendly_id :full_address, use: :slugged
   belongs_to :user
   has_many :encounters
   validate :unique_address, :required_fields, :address_exists

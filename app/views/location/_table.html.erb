@@ -3,7 +3,7 @@
     <input type="text" id="locationSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
     <p id="locationSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
     <% locations.each do |l| %>
-      <a class="list-item" href="<%= location_path(l.id) %>">
+      <a class="list-item" href="<%= location_path(l.slug) %>">
         <%= image_tag "pin" %>
         <p><%= l.full_address %></p>
       </a>

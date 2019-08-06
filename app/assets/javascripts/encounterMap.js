@@ -15,7 +15,7 @@ fetch(`${ROOT_URL}specie_geo_api?specie=${SPECIE_ID}`).then((data) => {
     let marker = new mapboxgl.Marker(el,{ offset: [0, -35] }).setLngLat([l.longitude,l.latitude]).addTo(map);
     let title = `<h3>${l.city}</h3>`;
     let address = `<p>${l.full_address}</p>`;
-    let link = `<a href="${ROOT_URL}location/${l.location_id}" class="green-button">View This Location</a>`;
+    let link = `<a href="${ROOT_URL}location/${l.slug}" class="green-button">View This Location</a>`;
     let popup = new mapboxgl.Popup().setHTML(title+address+link);
     marker.setPopup(popup);
   });
