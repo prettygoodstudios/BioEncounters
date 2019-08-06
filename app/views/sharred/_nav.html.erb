@@ -27,7 +27,7 @@
         </div>
         <div class="menu-profile-items">
           <%= link_to "Sign Out <i class='fas fa-sign-out-alt'></i>".html_safe, destroy_user_session_path, method: :delete, class: "menu-profile-item" %>
-          <%= link_to "My Encounters <i class='fas fa-leaf'></i>".html_safe, "my_encounters/"+current_user.id.to_s, class: "menu-profile-item" %>
+          <%= link_to "My Encounters <i class='fas fa-leaf'></i>".html_safe, root_url+"my_encounters/"+current_user.id.to_s, class: "menu-profile-item" %>
         </div>
       </div>
     <% end %>
