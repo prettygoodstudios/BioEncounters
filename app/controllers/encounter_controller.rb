@@ -202,10 +202,18 @@ class EncounterController < ActionController::Base
       errors.push({ error: "You must provide a valid CSV.", row: -1})
     end
     locations.each do |l|
-      Location.create!(city: l[:city], state: l[:state], title: "Untitled", country: l[:country], address: "", user_id: 1)
+      begin 
+        Location.create!(city: l[:city], state: l[:state], title: "Untitled", country: l[:country], address: "", user_id: 1)
+      rescue Exception => e  
+        puts "Location already exists: #{l[:city]}"
+      end
     end
     species.each do |s,i|
-      Specie.create!(scientific: s[:scientific_name], common: s[:common_name])
+      begin 
+        Specie.create!(scientific: s[:scientific_name], common: s[:common_name])
+      rescue Exception => e  
+        puts "Specie already exists: #{s[:common_name]}"
+      end
     end
     encounters.each do |e,i|
       loco = Location.where("city like '%#{e[:location][:city]}%'").first
