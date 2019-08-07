@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190807000931) do
+ActiveRecord::Schema.define(version: 20190807032046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20190807000931) do
     t.integer "location_id"
     t.integer "specie_id"
     t.integer "user_id"
+    t.string "slug"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

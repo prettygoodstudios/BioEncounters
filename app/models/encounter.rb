@@ -1,4 +1,6 @@
 class Encounter < ApplicationRecord
+  extend FriendlyId
+  friendly_id :unique_slug, use: :slugged
   belongs_to :location
   validate :required_fields
   def required_fields
@@ -11,6 +13,9 @@ class Encounter < ApplicationRecord
     elsif date == nil
       errors.add(:date, "You must provide a valid date")
     end
+  end
+  def unique_slug
+    description+"-"+date.month.to_s+"-"+specie_id.to_s+id.to_s+"124432"
   end
   def date_occurences
     Encounter.where("date = '#{date.to_s}'").length

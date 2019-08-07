@@ -3,7 +3,7 @@
     <input type="text" id="encounterSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
     <p id="encounterSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
     <% encounters.each do |e| %>
-      <a class="list-item" href="<%= encounter_path(e.id) %>">
+      <a class="list-item" href="<%= encounter_path(e.slug) %>">
         <img src="https://www.bio-techfar.com/images/assets/leaf.png" />
         <div class="list-item__text-group">
           <div class="list-item__text-group__title">

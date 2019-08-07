@@ -236,7 +236,7 @@ class EncounterController < ActionController::Base
     params.permit(:description)
   end
   def set_encounter
-    @encounter = Encounter.find(params[:id])
+    @encounter = Encounter.friendly.find(params[:id])
   end
   def is_signed_in
     redirect_to root_path, alert: "You must be logged in to perform this action." if current_user == nil
