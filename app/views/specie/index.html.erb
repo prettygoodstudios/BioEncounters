@@ -12,7 +12,7 @@
     <tbody>
       <% @species.each do |s| %>
         <tr class="specieItem">
-          <td><%= link_to s.common, specie_path(s.id) %></td>
+          <td><%= link_to s.common, specie_path(s.slug) %></td>
           <td><%= s.scientific %></td>
         </tr>
       <% end %>

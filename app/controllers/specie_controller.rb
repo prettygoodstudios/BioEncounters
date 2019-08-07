@@ -5,9 +5,9 @@ class SpecieController < ActionController::Base
     @species = Specie.all.order("common ASC")
   end
   def show
-    @specie = Specie.find(params[:id])
+    @specie = Specie.friendly.find(params[:id])
     @locations = Location.joins(:encounters).where("encounters.specie_id = #{@specie.id}")
-    @encounters = Encounter.where("specie_id = #{params[:id]}")
-    @months = Encounter.get_time_graph('specie', params[:id])
+    @encounters = Encounter.where("specie_id = #{@specie.id.to_s}")
+    @months = Encounter.get_time_graph('specie', @specie.id.to_s)
   end
 end
