@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :display, presence: true
   validates :display, uniqueness: true, if: -> { self.display.present? }
   def is_mine obj
-    obj.user_id == id
+    obj.user_id == id || role === "admin"
   end
   def self.authenticate_via_token email, token
     user = User.where("email = '#{email}'").first
