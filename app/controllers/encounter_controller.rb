@@ -1,9 +1,9 @@
 class EncounterController < ActionController::Base
   protect_from_forgery with: :exception
   layout "application"
-  before_action :set_encounter, only: [:show,:edit,:update]
-  before_action :is_signed_in, only: [:new,:edit,:create,:update,:my_encounters]
-  before_action :authorized, only: [:edit,:update]
+  before_action :set_encounter, only: [:show,:edit,:update,:destroy]
+  before_action :is_signed_in, only: [:new,:edit,:create,:update,:my_encounters, :delete]
+  before_action :authorized, only: [:edit,:update, :delete]
   def show
     @location = Location.find(@encounter.location_id)
     @user = @encounter.user_id ? User.find(@encounter.user_id) : nil
@@ -37,6 +37,13 @@ class EncounterController < ActionController::Base
   def edit
     @location = Location.find(@encounter.location_id)
     @specie = Specie.find(@encounter.specie_id)
+  end
+  def destroy 
+    if @encounter.destroy!
+      redirect_to location_index_path, alert: "Succesfully deleted encounter!"
+    else  
+      redirect_to location_index_path, alert: "There was an issue deleting the encounter."
+    end
   end
   def update
     return_path = edit_encounter_path(id: @encounter.id)

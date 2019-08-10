@@ -43,6 +43,7 @@
     </div>
     <br />
     <%= submit_tag "Update!", class: 'green-button' %>
+    <%= link_to "Delete Encounter", encounter_path(@encounter.id), class: "green-button" , method: "delete" %>
   <% end %>
 </div>
 <%= javascript_include_tag 'encounterForm' %>
