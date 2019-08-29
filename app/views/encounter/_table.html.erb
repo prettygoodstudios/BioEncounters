@@ -2,6 +2,24 @@
   <div class="list" id="encounter">
     <input type="text" id="encounterSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
     <p id="encounterSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
+    <div class="list__pagination">
+      <div class="list__pages">
+        <div class="list__pages__page"><</div>
+        <div class="list__pages__page">1</div>
+        <div class="list__pages__page">2</div>
+        <div class="list__pages__page">3</div>
+        <div class="list__pages__page">4</div>
+        <div class="list__pages__page">5</div>
+        <div class="list__pages__page">></div>
+      </div>
+      <label for="encounterPageSelector">Encounters/Page</label>
+      <select>
+        <option default>25</option>
+        <option>50</option>
+        <option>75</option>
+        <option>100</option>
+      </select>
+    </div>
     <% encounters.each do |e| %>
       <a class="list-item" href="<%= encounter_path(e.slug) %>">
         <img src="https://www.bio-techfar.com/images/assets/leaf.png" />
