@@ -3,17 +3,10 @@
     <input type="text" id="encounterSearch" placeholder="Search" style="width: calc(100% - 100px); margin: 20px;"/>
     <p id="encounterSearchResults" style="display: none; margin: 20px; padding-bottom: 20px;">Sorry, there are no search results.</p>
     <div class="list__pagination">
-      <div class="list__pages">
-        <div class="list__pages__page"><</div>
-        <div class="list__pages__page">1</div>
-        <div class="list__pages__page">2</div>
-        <div class="list__pages__page">3</div>
-        <div class="list__pages__page">4</div>
-        <div class="list__pages__page">5</div>
-        <div class="list__pages__page">></div>
+      <div class="list__pages" id="encounterPages">
       </div>
-      <label for="encounterPageSelector">Encounters/Page</label>
-      <select>
+      <label for="encounterPageQuantitySelector">Encounters/Page</label>
+      <select id="encounterPageQuantitySelector">
         <option default>25</option>
         <option>50</option>
         <option>75</option>
@@ -37,9 +30,15 @@
 
   <script>
     const encounterSearch =  document.getElementById("encounterSearch");
+    let pageLimit = 25;
+    let currentPage = 0;
+
 
     const filterEncounterResults = () => {
       let resultCount = 0;
+      document.querySelectorAll(".list-item").forEach((l) => {
+        l.style.display = "block";
+      });
       document.querySelectorAll(".list-item").forEach((l) => {
         if(l.innerHTML.indexOf("bio-techfar") != -1){
           if(l.innerHTML.toLowerCase().indexOf(encounterSearch.value.toLowerCase()) != -1 && encounterSearch.value != ""){
@@ -61,12 +60,56 @@
       }
     }
 
+    const paginateResults = () => {
+      let searchCount = 0;
+      document.querySelectorAll(".list-item").forEach((sr) => {
+        if(sr.style.display == "block"){
+          searchCount++;
+          if(searchCount > pageLimit || searchCount < currentPage*pageLimit){
+            sr.style.display = "none";
+          }
+        }
+      });
+      const totalPages = Math.ceil(searchCount/pageLimit) < 5 ? Math.ceil(searchCount/pageLimit) : 5;
+      const pageButtons = ["<"];
+      for(let i = 0; i < totalPages; i++){
+        pageButtons.push(i+1);
+      }
+      pageButtons.push(">");
+      const paginationPages = document.querySelector(".list__pages");
+      paginationPages.innerHTML = "";
+      pageButtons.forEach((b, i) => {
+        const myDiv = document.createElement("div");
+        myDiv.innerHTML = b;
+        myDiv.className = "list__pages__page";
+        myDiv.addEventListener("click", () => {
+          if(parseInt(b) > 0) currentPage = i - 1;
+          filterAndPaginate();
+        });
+        paginationPages.append(myDiv);
+      });
+    }
+
+
+    const filterAndPaginate = () => {
+      filterEncounterResults();
+      paginateResults();
+    }
+ 
+
     window.onload = () => {
       window.onload();
       filterEncounterResults();
+      paginateResults();
     }
-
-    encounterSearch.addEventListener("keyup", () => filterEncounterResults());
+    filterEncounterResults();
+    paginateResults();
+    const quantitySelector = document.getElementById("encounterPageQuantitySelector");
+    quantitySelector.addEventListener("change", (e) => {
+      pageLimit = parseInt(e.target.value);
+      filterAndPaginate();
+    });
+    encounterSearch.addEventListener("keyup", () => filterAndPaginate());
   </script>
 <% else %>
   <div class="list" id="encounter">

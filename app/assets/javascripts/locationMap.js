@@ -30,7 +30,7 @@ let observer = new MutationObserver((mutations, me) => {
   let mapContainer = document.querySelector(".mapboxgl-canvas-container");
   if(mapContainer){
     map.flyTo({center: [LOCATION[1],LOCATION[0]], zoom: ZOOM});
-    MutationObserver.disconnect();
+    //MutationObserver.disconnect();
     return;
   }
 });
