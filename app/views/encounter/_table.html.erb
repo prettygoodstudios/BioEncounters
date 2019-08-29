@@ -32,7 +32,7 @@
     const encounterSearch =  document.getElementById("encounterSearch");
     let pageLimit = 25;
     let currentPage = 0;
-
+    const paginationDiv = document.querySelector(".list__pagination");
 
     const filterEncounterResults = () => {
       let resultCount = 0;
@@ -55,8 +55,10 @@
       const searchResults = document.getElementById("encounterSearchResults");
       if(resultCount === 0){
         searchResults.style.display = "block";
+        paginationDiv.style.display = "none";
       }else{
         searchResults.style.display = "none";
+        paginationDiv.style.display = "flex";
       }
     }
 
