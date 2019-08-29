@@ -65,7 +65,7 @@
       document.querySelectorAll(".list-item").forEach((sr) => {
         if(sr.style.display == "block"){
           searchCount++;
-          if(searchCount > pageLimit || searchCount < currentPage*pageLimit){
+          if(searchCount > pageLimit+currentPage*pageLimit || searchCount < currentPage*pageLimit){
             sr.style.display = "none";
           }
         }
@@ -83,9 +83,14 @@
         myDiv.innerHTML = b;
         myDiv.className = "list__pages__page";
         myDiv.addEventListener("click", () => {
-          if(parseInt(b) > 0) currentPage = i - 1;
+          if(parseInt(b) > 0) {
+            currentPage = i - 1;
+          }
           filterAndPaginate();
         });
+        if(i - 1 == currentPage && parseInt(b) > 0){
+          myDiv.className += " selected-page";
+        }
         paginationPages.append(myDiv);
       });
     }
@@ -107,6 +112,7 @@
     const quantitySelector = document.getElementById("encounterPageQuantitySelector");
     quantitySelector.addEventListener("change", (e) => {
       pageLimit = parseInt(e.target.value);
+      currentPage = 0;
       filterAndPaginate();
     });
     encounterSearch.addEventListener("keyup", () => filterAndPaginate());
