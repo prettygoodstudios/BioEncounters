@@ -12,6 +12,7 @@
         <option>75</option>
         <option>100</option>
       </select>
+      <div class="list__total-pages"></div>
     </div>
     <% encounters.each do |e| %>
       <a class="list-item" href="<%= encounter_path(e.slug) %>">
@@ -33,6 +34,7 @@
     let pageLimit = 25;
     let currentPage = 0;
     const paginationDiv = document.querySelector(".list__pagination");
+    const totalPagesDiv = document.querySelector(".list__total-pages");
 
     window.onresize = () => {
       filterAndPaginate();
@@ -76,8 +78,10 @@
           }
         }
       });
-      const totalPages = Math.ceil(searchCount/pageLimit) < 5 ? Math.ceil(searchCount/pageLimit) : 5;
+      const realTotalPages = Math.ceil(searchCount/pageLimit);
+      const totalPages = realTotalPages < 5 ? realTotalPages : 5;
       const pageButtons = ["<"];
+      totalPagesDiv.innerHTML = "Current Page: "+(currentPage+1)+"/"+totalPages;
       for(let i = 0; i < totalPages; i++){
         pageButtons.push(i+1);
       }

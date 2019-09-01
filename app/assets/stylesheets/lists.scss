@@ -3,6 +3,7 @@
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
   border-radius: 3px;
   margin: 10px;
+  position: relative;
   .list-item{
     height: 200px;
     display: block;
@@ -47,8 +48,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 50px;
+    height: 100px;
     align-items: center;
+    position: relative;
     label{
       margin-right: 20px;
     }
@@ -83,6 +85,11 @@
       }
     }
   }
+  &__total-pages{
+   position: absolute;
+   top: 80px;
+   left: 0px;
+  }
 }
 
 
@@ -93,7 +100,7 @@
 @media only screen and (max-width: 600px){
   .list__pagination{
     display: grid;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 50px 100px;
     grid-template-columns: 1fr 1fr;
     height: auto;
     margin-bottom: 20px;
@@ -109,5 +116,8 @@
       grid-row: 2;
       grid-column: 2/3;
     }
+  }
+  .list__total-pages{
+    top: 60px;
   }
 }
