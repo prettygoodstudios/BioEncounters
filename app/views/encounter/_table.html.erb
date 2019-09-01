@@ -34,6 +34,10 @@
     let currentPage = 0;
     const paginationDiv = document.querySelector(".list__pagination");
 
+    window.onresize = () => {
+      filterAndPaginate();
+    }
+
     const filterEncounterResults = () => {
       let resultCount = 0;
       document.querySelectorAll(".list-item").forEach((l) => {
@@ -58,7 +62,7 @@
         paginationDiv.style.display = "none";
       }else{
         searchResults.style.display = "none";
-        paginationDiv.style.display = "flex";
+        paginationDiv.style.display = window.innerWidth > 600 ? "flex" : "grid";
       }
     }
 

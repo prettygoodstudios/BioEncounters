@@ -92,10 +92,11 @@
 
 @media only screen and (max-width: 600px){
   .list__pagination{
-    display: grid !important;
+    display: grid;
     grid-template-rows: 50px 1fr;
     grid-template-columns: 1fr 1fr;
     height: auto;
+    margin-bottom: 20px;
     .list__pages{
       grid-row: 0/1;
       grid-column: 1/3;
