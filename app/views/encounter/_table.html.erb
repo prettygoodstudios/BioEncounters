@@ -33,6 +33,7 @@
     const encounterSearch =  document.getElementById("encounterSearch");
     let pageLimit = 25;
     let currentPage = 0;
+    let currentPageShift = 0;
     const paginationDiv = document.querySelector(".list__pagination");
     const totalPagesDiv = document.querySelector(".list__total-pages");
 
@@ -68,22 +69,24 @@
       }
     }
 
+    
+
     const paginateResults = () => {
       let searchCount = 0;
       document.querySelectorAll(".list-item").forEach((sr) => {
         if(sr.style.display == "block"){
           searchCount++;
-          if(searchCount > pageLimit+currentPage*pageLimit || searchCount < currentPage*pageLimit){
+          if(searchCount > pageLimit+currentPage*pageLimit+pageLimit*currentPageShift*5 || searchCount < currentPage*pageLimit+pageLimit*currentPageShift*5){
             sr.style.display = "none";
           }
         }
       });
       const realTotalPages = Math.ceil(searchCount/pageLimit);
-      const totalPages = realTotalPages < 5 ? realTotalPages : 5;
+      const totalPages = realTotalPages-currentPageShift*5 < 5 ? realTotalPages-currentPageShift*5 : 5;
       const pageButtons = ["<"];
-      totalPagesDiv.innerHTML = "Current Page: "+(currentPage+1)+"/"+totalPages;
+      totalPagesDiv.innerHTML = "Current Page: "+(currentPage+1)+"/"+realTotalPages;
       for(let i = 0; i < totalPages; i++){
-        pageButtons.push(i+1);
+        pageButtons.push(i+1+5*currentPageShift);
       }
       pageButtons.push(">");
       const paginationPages = document.querySelector(".list__pages");
@@ -94,7 +97,11 @@
         myDiv.className = "list__pages__page";
         myDiv.addEventListener("click", () => {
           if(parseInt(b) > 0) {
-            currentPage = i - 1;
+            currentPage = i - 1 + (5*currentPageShift);
+          }else if(b == "<"){
+            shiftPages(-1);
+          }else{
+            shiftPages(1);
           }
           filterAndPaginate();
         });
@@ -105,11 +112,22 @@
       });
     }
 
+    const shiftPages = (direction) => {
+      currentPageShift += direction;
+      const maxPageShift = Math.floor(parseInt(totalPagesDiv.innerHTML.split("/")[1])/5);
+      if(currentPageShift < 0){
+        currentPageShift = 0;
+      }else if(currentPageShift > maxPageShift){
+        currentPageShift = maxPageShift;
+      }
+      filterAndPaginate();
+    }
 
     const filterAndPaginate = () => {
       filterEncounterResults();
       paginateResults();
     }
+
  
 
     window.onload = () => {
@@ -123,9 +141,14 @@
     quantitySelector.addEventListener("change", (e) => {
       pageLimit = parseInt(e.target.value);
       currentPage = 0;
+      currentPageShift = 0;
       filterAndPaginate();
     });
-    encounterSearch.addEventListener("keyup", () => filterAndPaginate());
+    encounterSearch.addEventListener("keyup", () => {
+      filterAndPaginate()
+      currentPage = 0;
+      currentPageShift = 0;
+    });
   </script>
 <% else %>
   <div class="list" id="encounter">
