@@ -1,0 +1,21 @@
+@import "variables";
+
+#error_explanation{
+    h2{
+        display: none;
+    }
+    ul{
+        margin-left: 0;
+        padding: 0;
+        li{
+            display: none;
+        }
+        li:nth-child(1){
+            display: block;
+            background-color: $primary-color;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: $light-color;
+        }
+    }
+}
