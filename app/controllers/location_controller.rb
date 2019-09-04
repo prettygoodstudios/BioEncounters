@@ -16,7 +16,7 @@ class LocationController < ActionController::Base
     render json: Location.find_by_sql("SELECT l.*, COUNT(e.id) as pop FROM locations l LEFT JOIN encounters e ON e.location_id = l.id GROUP BY l.id HAVING COUNT(e.id) > 0").map { |l| {city: l.city, full_address: l.full_address, id: l.id, latitude: l.latitude, longitude: l.longitude, encounters: l.pop, slug: l.slug} }
   end
   def get_by_state
-    @locations = Location.where("state = '#{params[:state]}'").order("city ASC")
+    @locations = Location.where("state = '#{params[:state]}'").joins(:encounters).group('encounters.location_id, locations.id').having("COUNT(encounters.id) > 0").order("city ASC")
     @months = Encounter.get_time_graph('state', params[:state])
     @state = State.where("name = '#{params[:state]}'").first
   end
