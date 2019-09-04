@@ -76,7 +76,7 @@
       document.querySelectorAll(".list-item").forEach((sr) => {
         if(sr.style.display == "block"){
           searchCount++;
-          if(searchCount > pageLimit+currentPage*pageLimit+pageLimit*currentPageShift*5 || searchCount < currentPage*pageLimit+pageLimit*currentPageShift*5){
+          if(searchCount > pageLimit+currentPage*pageLimit || searchCount < currentPage*pageLimit){
             sr.style.display = "none";
           }
         }
@@ -89,6 +89,7 @@
         pageButtons.push(i+1+5*currentPageShift);
       }
       pageButtons.push(">");
+      
       const paginationPages = document.querySelector(".list__pages");
       paginationPages.innerHTML = "";
       pageButtons.forEach((b, i) => {
