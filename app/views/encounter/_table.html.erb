@@ -74,10 +74,12 @@
     const paginateResults = () => {
       let searchCount = 0;
       document.querySelectorAll(".list-item").forEach((sr) => {
-        if(sr.style.display == "block"){
-          searchCount++;
-          if(searchCount > pageLimit+currentPage*pageLimit || searchCount < currentPage*pageLimit){
-            sr.style.display = "none";
+        if(sr.innerHTML.indexOf("bio-techfar") != -1){
+          if(sr.style.display == "block"){
+            searchCount++;
+            if(searchCount > pageLimit+currentPage*pageLimit || searchCount < currentPage*pageLimit){
+              sr.style.display = "none";
+            }
           }
         }
       });
