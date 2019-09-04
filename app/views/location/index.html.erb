@@ -1,6 +1,8 @@
 <div class="content-card">
   <h1>Locations</h1>
   <div id="map"></div>
+  <%= link_to "<i class='fas fa-plus''></i>".html_safe, new_encounter_path, class: "round-button", style: "margin-top: 20px; margin-left: 20px;" if signed_in?%>
+  <%= "<span>Create Encounter</span>".html_safe if signed_in? %>
   <%= render partial: "location/table", locals: {locations: @locations} %>
   <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
