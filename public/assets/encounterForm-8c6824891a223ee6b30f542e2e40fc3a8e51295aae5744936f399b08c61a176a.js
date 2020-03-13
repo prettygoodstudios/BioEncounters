@@ -1,0 +1,1 @@
+window.addEventListener("load",()=>{let e=document.querySelector(".specie-fields"),t=document.querySelector(".select-specie");const c=document.querySelector("#toggleSpecie");c.checked=!1,c.addEventListener("change",c=>{c.target;e.style.display=c.target.checked?"block":"none",t.style.display=c.target.checked?"none":"block"})});
