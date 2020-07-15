@@ -8,8 +8,7 @@ groups.forEach((g) => {
   input.addEventListener("focusout", () => {
     if(input.value == "") g.className = "form-group";
   });
-  input.addEventListener("blur", () => {
-    console.log("changing");
+  input.addEventListener("blur input", () => {
     checkEachOne();
   });
   input.addEventListener("keydown", () => {
